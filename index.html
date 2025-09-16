@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,15 +12,18 @@
     <header class="header">
         <!-- Left: Language Button -->
         <div class="left">
-            <button class="lang-btn" onclick="toggleLanguage()">🌐 Langue</button>
+            <select id="lang-select" class="lang-btn" onchange="changeLanguage(this.value)">
+                <option value="fr">🌐 Français</option>
+                <option value="en">🌐 English</option>
+            </select>
         </div>
 
         <!-- Center: Bio -->
         <div class="center">
-            <p class="bio">
-                Doctor in Information and Communication Science and Technology, 
-                specialized in Artificial Intelligence, Data Analysis, and Intelligent Systems. 
-                Passionate about research, innovation, and collaborative projects.
+            <p id="bio-text" class="bio">
+                Docteure en Sciences et Technologies de l’Information et de la Communication, 
+                spécialisée en Intelligence Artificielle, Analyse de Données et Systèmes Intelligents. 
+                Passionnée par la recherche, l’innovation et les projets collaboratifs.
             </p>
         </div>
 
@@ -28,9 +31,9 @@
         <div class="right">
             <nav class="nav-bar">
                 <ul>
-                    <li><a href="Presentation_F.html">Présentation</a></li>
-                    <li><a href="Documentation_F.html">Documentation</a></li>
-                    <li><a href="test.html">Test</a></li>
+                    <li><a id="nav-presentation" href="Presentation_F.html">Présentation</a></li>
+                    <li><a id="nav-doc" href="Documentation_F.html">Documentation</a></li>
+                    <li><a id="nav-test" href="test_F.html">Test</a></li>
                 </ul>
             </nav>
         </div>
@@ -38,14 +41,61 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Rihab Souissi.</p>
+        <p id="footer-text">© 2025 Rihab Souissi.</p>
     </footer>
 
     <!-- Script -->
     <script>
-        function toggleLanguage() {
-            alert("Fonction pour changer la langue à implémenter !");
+        const translations = {
+            fr: {
+                bio: "Docteure en Sciences et Technologies de l’Information et de la Communication, spécialisée en Intelligence Artificielle, Analyse de Données et Systèmes Intelligents. Passionnée par la recherche, l’innovation et les projets collaboratifs.",
+                navPresentation: "Présentation",
+                navDoc: "Documentation",
+                navTest: "Test",
+                links: {
+                    presentation: "Presentation_F.html",
+                    doc: "Documentation_F.html",
+                    test: "test_F.html"
+                },
+                footer: "© 2025 Rihab Souissi."
+            },
+            en: {
+                bio: "PhD in Information and Communication Science and Technology, specialized in Artificial Intelligence, Data Analysis, and Intelligent Systems. Passionate about research, innovation, and collaborative projects.",
+                navPresentation: "Presentation",
+                navDoc: "Documentation",
+                navTest: "Test",
+                links: {
+                    presentation: "Presentation_A.html",
+                    doc: "Documentation_A.html",
+                    test: "test_A.html"
+                },
+                footer: "© 2025 Rihab Souissi."
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Texte
+            document.getElementById("bio-text").textContent = translations[lang].bio;
+            document.getElementById("nav-presentation").textContent = translations[lang].navPresentation;
+            document.getElementById("nav-doc").textContent = translations[lang].navDoc;
+            document.getElementById("nav-test").textContent = translations[lang].navTest;
+            document.getElementById("footer-text").textContent = translations[lang].footer;
+
+            // Liens
+            document.getElementById("nav-presentation").setAttribute("href", translations[lang].links.presentation);
+            document.getElementById("nav-doc").setAttribute("href", translations[lang].links.doc);
+            document.getElementById("nav-test").setAttribute("href", translations[lang].links.test);
+
+            // Sauvegarde du choix
+            localStorage.setItem("lang", lang);
         }
+
+        // Charger la langue choisie au dernier usage
+        window.onload = function () {
+            const savedLang = localStorage.getItem("lang") || "fr";
+            document.getElementById("lang-select").value = savedLang;
+            changeLanguage(savedLang);
+        };
     </script>
 
 </body>
