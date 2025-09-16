@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Ponera Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Prédiction de la note produit</h2>
+    <form action="run_model.py" method="post" target="_blank">
+        <label for="title">Titre du produit :</label>
+        <input type="text" name="title" id="title" required>
+
+        <label for="asin">ASIN :</label>
+        <input type="text" name="asin" id="asin" required>
+
+        <label for="price">Prix :</label>
+        <input type="number" step="0.01" name="price" id="price" required>
+
+        <label for="image_path">URL ou chemin de l'image :</label>
+        <input type="text" name="image_path" id="image_path" required>
+
+        <label for="real_rating">Note réelle :</label>
+        <input type="number" step="0.01" name="real_rating" id="real_rating" required>
+
+        <button type="submit">Prédire</button>
+    </form>
+</div>
+
+</body>
+</html>
 
