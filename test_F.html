@@ -4,32 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test - Ponera Project</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <div class="form-container">
     <h2>Prédiction de la note produit</h2>
-    <form action="run_model.py" method="post" target="_blank">
+
+    <form method="POST">
         <label for="title">Titre du produit :</label>
-        <input type="text" name="title" id="title" required>
+        <input type="text" name="title" id="title" required value="{{ request.form.title if request.form.title }}">
 
         <label for="asin">ASIN :</label>
-        <input type="text" name="asin" id="asin" required>
+        <input type="text" name="asin" id="asin" required value="{{ request.form.asin if request.form.asin }}">
 
         <label for="price">Prix :</label>
-        <input type="number" step="0.01" name="price" id="price" required>
+        <input type="number" step="0.01" name="price" id="price" required value="{{ request.form.price if request.form.price }}">
 
         <label for="image_path">URL ou chemin de l'image :</label>
-        <input type="text" name="image_path" id="image_path" required>
+        <input type="text" name="image_path" id="image_path" required value="{{ request.form.image_path if request.form.image_path }}">
 
         <label for="real_rating">Note réelle :</label>
-        <input type="number" step="0.01" name="real_rating" id="real_rating" required>
+        <input type="number" step="0.01" name="real_rating" id="real_rating" required value="{{ request.form.real_rating if request.form.real_rating }}">
 
         <button type="submit">Prédire</button>
     </form>
+
+    {% if results %}
+    <div class="results">
+        <h3>Résultats :</h3>
+        <p>Random Forest: {{ results.pred_rf }}, RMSE: {{ results.rmse_rf }}</p>
+        <p>XGBoost: {{ results.pred_xgb }}, RMSE: {{ results.rmse_xgb }}</p>
+        <p>CatBoost: {{ results.pred_cb }}, RMSE: {{ results.rmse_cb }}</p>
+    </div>
+    {% endif %}
 </div>
 
 </body>
 </html>
-
