@@ -1,59 +1,63 @@
-/* Reset & Base */
+/* Styles de base */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header: 3 colonnes */
-.header {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-    padding: 15px;
-    background-color: #0073e6;
-    color: white;
-}
-
-/* Left: Navigation */
-.nav-bar ul {
+/* Header */
+header {
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+/* Texte d’introduction */
+.center {
+    flex: 1;
+    text-align: center;
+}
+
+/* Menu de navigation */
+.nav-bar {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.nav-bar ul {
     list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     padding: 0;
     margin: 0;
 }
+
 .nav-bar a {
-    color: white;
     text-decoration: none;
+    color: #333;
     font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 6px;
-}
-.nav-bar a:hover {
-    background-color: #005bb5;
 }
 
-/* Center: Introduction */
-.center {
+/* Contenu principal */
+main {
+    padding: 20px;
     text-align: center;
 }
-.bio {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.4;
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #f0f0f0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-/* Right: Language Button */
+/* Choix de langue */
 .lang-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    background-color: #005bb5;
-    color: white;
-    cursor: pointer;
-}
-.lang-btn:hover {
-    background-color: #003f80;
+    padding: 5px;
 }
