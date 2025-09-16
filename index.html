@@ -8,46 +8,42 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <!-- Introduction centrale -->
-<!--         <div class="center">
-            <p id="bio-text">
-                Docteure en Sciences et Technologies de l’Information et de la Communication, spécialisée en Intelligence Artificielle, Analyse de Données et Systèmes Intelligents.
-            </p>
-        </div> -->
-
-        <!-- Choix de langue -->
-        <div class="right">
-            <select id="lang-select" class="lang-btn" onchange="changeLanguage(this.value)">
-                <option value="fr">🌐 Français</option>
-                <option value="en">🌐 English</option>
-            </select>
-        </div>
-    </header>
-
-    <!-- Menu de navigation -->
-    <nav class="nav-bar">
+    <!-- Navigation verticale gauche -->
+    <nav class="sidebar">
         <ul>
             <li><a id="nav-presentation" href="Presentation_F.html">Présentation</a></li>
             <li><a id="nav-doc" href="Documentation_F.html">Documentation</a></li>
             <li><a id="nav-test" href="test_F.html">Test</a></li>
         </ul>
+
+        <!-- Choix de langue en bas de la sidebar -->
+        <div class="lang-container">
+            <select id="lang-select" class="lang-btn" onchange="changeLanguage(this.value)">
+                <option value="fr">🌐 Français</option>
+                <option value="en">🌐 English</option>
+            </select>
+        </div>
     </nav>
 
-    <!-- Contenu principal -->
-    <main>
-        <h2>Bienvenue sur Ponera Project</h2>
-        <p>Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents.</p>
+    <!-- Contenu principal à droite -->
+    <main class="main-content">
+        <div class="intro">
+            <p id="bio-text">
+                Docteure en Sciences et Technologies de l’Information et de la Communication, spécialisée en Intelligence Artificielle, Analyse de Données et Systèmes Intelligents. Passionnée par la recherche, l’innovation et les projets collaboratifs.
+            </p>
+        </div>
+
+        <section>
+            <h2>Bienvenue sur Ponera Project</h2>
+            <p>Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents.</p>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p id="footer-text">© 2025 Rihab Souissi.</p>
     </footer>
 
-    <!-- Script de traduction -->
+    <!-- Script -->
     <script src="script.js"></script>
-
 </body>
 </html>
