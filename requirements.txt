@@ -1,4 +1,5 @@
 Flask
+gunicorn
 pandas
 numpy
 joblib
@@ -8,4 +9,3 @@ catboost
 Pillow
 scikit-learn
 requests
-gunicorn
