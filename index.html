@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rihab Souissi - Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustement rapide de la nav-bar */
+        .nav-bar ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-bar li {
+            flex: 1;
+            text-align: center;
+        }
+        .nav-bar li:first-child {
+            text-align: left;
+        }
+        .nav-bar li:last-child {
+            text-align: right;
+        }
+        /* Bouton langue */
+        .lang-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #0073e6;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .lang-btn:hover {
+            background-color: #005bb5;
+        }
+    </style>
 </head>
 <body>
 
@@ -39,14 +75,15 @@
         <!-- Navigation Bar -->
         <nav class="nav-bar">
             <ul>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="research-publications.html">Research Publications</a></li>
+                <li><a href="presentation.html">Présentation</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="test.html">Test</a></li>
             </ul>
         </nav>
     </div>
+
+    <!-- Language Button -->
+    <button class="lang-btn" onclick="toggleLanguage()">🌐 Langue</button>
 
     <!-- Footer -->
     <footer>
@@ -55,6 +92,11 @@
 
     <!-- Link to JavaScript file -->
     <script src="script.js"></script>
+    <script>
+        function toggleLanguage() {
+            alert("Fonction pour changer la langue à implémenter !");
+        }
+    </script>
 
 </body>
 </html>
