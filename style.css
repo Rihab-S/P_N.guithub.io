@@ -6,96 +6,54 @@ body {
     color: #333;
 }
 
-/* Main Container */
-.main-container {
-    width: 90%;
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
+/* Header: 3 colonnes */
+.header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 15px;
+    background-color: #0073e6;
+    color: white;
 }
 
-/* Profile Section */
-.top-section {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-.animated-title {
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-.social-links a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #0073e6;
-}
-
-/* About Section */
-#about {
-    margin: 20px 0;
-}
-
-/* Navigation Bar */
+/* Left: Navigation */
 .nav-bar ul {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 15px;
     list-style: none;
     padding: 0;
-    margin: 20px 0;
-    background-color: #0073e6;
-    border-radius: 8px;
-}
-.nav-bar li {
-    flex: 1;
-    text-align: center;
-}
-.nav-bar li:first-child {
-    text-align: left;
-    padding-left: 15px;
-}
-.nav-bar li:last-child {
-    text-align: right;
-    padding-right: 15px;
+    margin: 0;
 }
 .nav-bar a {
-    display: block;
-    padding: 10px;
     color: white;
     text-decoration: none;
     font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
 }
 .nav-bar a:hover {
     background-color: #005bb5;
-    border-radius: 8px;
 }
 
-/* Language Button */
+/* Center: Introduction */
+.center {
+    text-align: center;
+}
+.bio {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Right: Language Button */
 .lang-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     padding: 8px 12px;
     border: none;
-    background-color: #0073e6;
-    color: white;
     border-radius: 6px;
+    background-color: #005bb5;
+    color: white;
     cursor: pointer;
 }
 .lang-btn:hover {
-    background-color: #005bb5;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-    background-color: #333;
-    color: white;
-    border-radius: 8px;
+    background-color: #003f80;
 }
