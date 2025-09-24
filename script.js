@@ -48,9 +48,9 @@ window.onload = function () {
 document.addEventListener("DOMContentLoaded", function () {
     const textElement = document.getElementById("animated-text");
     const phrases = [
-        "I'm Rihab Souissi",
-        "I'm a Dr.-Ing",
-        "I'm a Machine Learning Researcher and developer",
+        "Ponera protège votre marque| sur Amazon",
+        "Ponera augmente vos ventes|sur Amazon",
+        "Ponera vend vos produits| sur Amazon",
         "I'm a Python Developer",
         "I'm a C++ Developer",
     ];
