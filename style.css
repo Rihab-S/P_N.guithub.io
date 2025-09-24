@@ -63,8 +63,8 @@ html, body {
     color: #f39c12;
 }
 
-/* Lang selector */
-.lang-container {
+/* /* Lang selector */
+/* .lang-container {
     margin-top: auto;
 }
 
@@ -73,8 +73,28 @@ html, body {
     padding: 5px;
     border: none;
     border-radius: 5px;
+} */ 
+/* Lang selector */
+.lang-container {
+    margin-top: auto;
 }
 
+.lang-btn {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1E90FF; /* Bleu */
+    color: white;              /* Texte en blanc */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Supprimer le style par défaut des <select> */
+.lang-btn option {
+    background-color: #1E90FF; /* Fond bleu dans la liste */
+    color: white;              /* Texte en blanc */
+}
 /* Contenu principal */
 .content-wrapper {
     flex: 1; /* prend tout l’espace à droite */
