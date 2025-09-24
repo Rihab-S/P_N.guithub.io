@@ -8,6 +8,17 @@
 html, body {
     height: 100%;
 }
+/* Photo/logo en haut de la sidebar */
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-logo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* optionnel : coins arrondis */
+}
 
 /* Wrapper principal */
 .page-wrapper {
