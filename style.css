@@ -16,15 +16,17 @@ html, body {
 }
 
 /* Sidebar */
+/* Sidebar */
 .sidebar {
     width: 220px;
-    background: #2c3e50;
+    background: #0B1B48; /* couleur du logo */
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
 }
+
 
 /* Logo/photo en haut */
 .sidebar-logo {
@@ -33,10 +35,11 @@ html, body {
 }
 
 .sidebar-logo img {
-    max-width: 100%;
+    width: 100px; /* taille réduite */
     height: auto;
     border-radius: 10px;
 }
+
 
 .sidebar ul {
     list-style: none;
