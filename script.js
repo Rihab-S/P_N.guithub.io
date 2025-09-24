@@ -9,7 +9,12 @@ const translations = {
             doc: "Documentation_F.html",
             test: "test_F.html"
         },
-        footer: "© 2025 Rihab Souissi."
+        footer: "© 2025 Rihab Souissi.",
+        phrases: [
+            "Ponera protège votre marque| sur Amazon",
+            "Ponera augmente vos ventes| sur Amazon",
+            "Ponera vend vos produits| sur Amazon"
+        ]
     },
     en: {
         bio: "PhD in Information and Communication Science and Technology, specialized in Artificial Intelligence, Data Analysis, and Intelligent Systems. Passionate about research, innovation, and collaborative projects.",
@@ -21,7 +26,12 @@ const translations = {
             doc: "Documentation_A.html",
             test: "test_A.html"
         },
-        footer: "© 2025 Rihab Souissi."
+        footer: "© 2025 Rihab Souissi.",
+        phrases: [
+            "Ponera protects your brand| on Amazon",
+            "Ponera boosts your sales| on Amazon",
+            "Ponera sells your products| on Amazon"
+        ]
     }
 };
 
@@ -37,6 +47,8 @@ function changeLanguage(lang) {
     document.getElementById("nav-test").setAttribute("href", translations[lang].links.test);
 
     localStorage.setItem("lang", lang);
+
+    startTextAnimation(lang); // recharge les phrases de l’animation
 }
 
 window.onload = function () {
@@ -45,43 +57,41 @@ window.onload = function () {
     changeLanguage(savedLang);
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+/* Animation de texte */
+let animationInterval;
+
+function startTextAnimation(lang) {
+    clearTimeout(animationInterval);
+
     const textElement = document.getElementById("animated-text");
-    const phrases = [
-        "Ponera protège votre marque| sur Amazon",
-        "Ponera augmente vos ventes|sur Amazon",
-        "Ponera vend vos produits| sur Amazon",
-       
-    ];
+    const phrases = translations[lang].phrases;
     let phraseIndex = 0;
     let letterIndex = 0;
     let isDeleting = false;
-    
+
     function typeEffect() {
         const currentPhrase = phrases[phraseIndex];
 
         if (!isDeleting) {
-            // Typing effect
             textElement.textContent = currentPhrase.substring(0, letterIndex + 1);
             letterIndex++;
 
             if (letterIndex === currentPhrase.length) {
                 isDeleting = true;
-                setTimeout(typeEffect, 700); // Pause before deleting
+                animationInterval = setTimeout(typeEffect, 700);
                 return;
             }
         } else {
-            // Deleting effect
             textElement.textContent = currentPhrase.substring(0, letterIndex - 1);
             letterIndex--;
 
             if (letterIndex === 0) {
                 isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length; // Move to the next phrase
+                phraseIndex = (phraseIndex + 1) % phrases.length;
             }
         }
-        setTimeout(typeEffect, isDeleting ? 50 : 100); // Typing speed
+        animationInterval = setTimeout(typeEffect, isDeleting ? 50 : 100);
     }
-    
+
     typeEffect();
-});
+}
