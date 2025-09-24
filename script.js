@@ -40,6 +40,7 @@ const translations = {
 };
 
 function changeLanguage(lang) {
+    // Mettre à jour le contenu statique
     document.getElementById("bio-text").textContent = translations[lang].bio;
     document.getElementById("nav-presentation").textContent = translations[lang].navPresentation;
     document.getElementById("nav-doc").textContent = translations[lang].navDoc;
@@ -55,12 +56,14 @@ function changeLanguage(lang) {
 
     localStorage.setItem("lang", lang);
 
-    startTextAnimation(lang); // recharge l’animation
+    // Recharge l'animation
+    startTextAnimation(lang);
 }
 
+// Lancer le texte animé dès le chargement
 window.onload = function () {
     const savedLang = localStorage.getItem("lang") || "fr";
-    changeLanguage(savedLang);
+    changeLanguage(savedLang); // Cela met à jour le contenu et lance l'animation
 };
 
 /* Animation de texte */
