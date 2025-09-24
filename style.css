@@ -9,10 +9,20 @@ html, body {
     height: 100%;
 }
 
-/* Wrapper principal */
-.page-wrapper {
+/* /* Wrapper principal */
+/* .page-wrapper {
     display: flex;
     min-height: 100vh;
+} */ 
+.content-wrapper {
+    background-color: #f5f5f5; /* couleur de fond claire */
+    /* OU utiliser une image de fond */
+    background-image: url('back_ground.jpg');
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    padding: 20px; /* facultatif, pour espacer le contenu du bord */
+    border-radius: 10px; /* facultatif, pour un effet arrondi */
 }
 
 /* Sidebar */
