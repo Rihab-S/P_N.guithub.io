@@ -51,8 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Ponera protège votre marque| sur Amazon",
         "Ponera augmente vos ventes|sur Amazon",
         "Ponera vend vos produits| sur Amazon",
-        "I'm a Python Developer",
-        "I'm a C++ Developer",
+       
     ];
     let phraseIndex = 0;
     let letterIndex = 0;
