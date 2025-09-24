@@ -1,6 +1,6 @@
 const translations = {
     fr: {
-        bio: "Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces. Dès le premier jour, nos experts achètent vos produits,  protègent votre marque et analysent le marché pour mettre en place une stratégie de croissance.",
+        bio: "Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces. Dès le premier jour, nos experts achètent vos produits, protègent votre marque et analysent le marché pour mettre en place une stratégie de croissance.",
         navPresentation: "Présentation",
         navDoc: "Documentation",
         navTest: "Test",
@@ -56,14 +56,14 @@ function changeLanguage(lang) {
 
     localStorage.setItem("lang", lang);
 
-    // Recharge l'animation
+    // Lancer ou relancer l'animation
     startTextAnimation(lang);
 }
 
-// Lancer le texte animé dès le chargement
+// Lancer la langue sauvegardée au chargement de la page
 window.onload = function () {
     const savedLang = localStorage.getItem("lang") || "fr";
-    changeLanguage(savedLang); // Cela met à jour le contenu et lance l'animation
+    changeLanguage(savedLang);
 };
 
 /* Animation de texte */
@@ -75,7 +75,7 @@ function startTextAnimation(lang) {
     const textElement = document.getElementById("animated-text");
     const phrases = translations[lang].phrases;
 
-    // Calculer la phrase la plus longue
+    // Définir une largeur fixe en fonction de la phrase la plus longue
     const maxLength = Math.max(...phrases.map(p => p.length));
     textElement.style.width = `${maxLength}ch`;
 
