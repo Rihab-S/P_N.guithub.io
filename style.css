@@ -87,8 +87,8 @@ html, body {
 .main-content {
     flex: 1;
     padding: 30px;
-    border-radius: 10px;
-    color: white; /* texte en blanc */
+    /* border-radius: 10px; */
+    /* color: white; /* texte en blanc */ */
     background: transparent; /* plus de fond semi-transparent */
 }
 
