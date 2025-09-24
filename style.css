@@ -9,34 +9,22 @@ html, body {
     height: 100%;
 }
 
-/* /* Wrapper principal */
-/* .page-wrapper {
+/* Wrapper principal */
+.page-wrapper {
     display: flex;
     min-height: 100vh;
-} */ 
-.content-wrapper {
-    background-color: #f5f5f5; /* couleur de fond claire */
-    /* OU utiliser une image de fond */
-    background-image: url('back_ground.jpg');
-    /* background-size: cover; */
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
-    padding: 20px; /* facultatif, pour espacer le contenu du bord */
-    border-radius: 10px; /* facultatif, pour un effet arrondi */
 }
 
 /* Sidebar */
-/* Sidebar */
 .sidebar {
     width: 220px;
-    background: #0B1B48; /* couleur du logo */
+    background: #0B1B48;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
 }
-
 
 /* Logo/photo en haut */
 .sidebar-logo {
@@ -45,11 +33,10 @@ html, body {
 }
 
 .sidebar-logo img {
-    width: 100px; /* taille réduite */
+    width: 100px;
     height: auto;
     border-radius: 10px;
 }
-
 
 .sidebar ul {
     list-style: none;
@@ -82,16 +69,26 @@ html, body {
     border-radius: 5px;
 }
 
-/* /* Contenu principal */
-/* .content-wrapper {
+/* Contenu principal */
+.content-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
-} */ 
+    background-color: #f5f5f5; /* couleur de fond si image non disponible */
+    background-image: url('back_ground.jpg');
+    background-size: cover;       /* L'image couvre tout le conteneur */
+    background-position: center;  /* centrage de l'image */
+    background-repeat: no-repeat; /* pas de répétition */
+    padding: 20px;
+    border-radius: 10px;          /* coins arrondis */
+}
 
+/* Main content */
 .main-content {
     flex: 1;
     padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* optionnel: fond semi-transparent pour le texte */
+    border-radius: 10px;
 }
 
 /* Footer */
