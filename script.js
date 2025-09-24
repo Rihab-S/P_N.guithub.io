@@ -1,6 +1,6 @@
 const translations = {
     fr: {
-        bio: "Docteure en Sciences et Technologies de l’Information et de la Communication, spécialisée en Intelligence Artificielle, Analyse de Données et Systèmes Intelligents. Passionnée par la recherche, l’innovation et les projets collaboratifs.",
+        bio: "Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces. Dès le premier jour, nos experts achètent vos produits,  protègent votre marque et analysent le marché pour mettre en place une stratégie de croissance.",
         navPresentation: "Présentation",
         navDoc: "Documentation",
         navTest: "Test",
