@@ -17,7 +17,7 @@ const translations = {
         ]
     },
     en: {
-        bio: "PhD in Information and Communication Science and Technology, specialized in Artificial Intelligence, Data Analysis, and Intelligent Systems. Passionate about research, innovation, and collaborative projects.",
+        bio: "Ponera is the first retailer 100% dedicated to selling brands on Amazon and Marketplaces. From day one, our experts buy your products, protect your brand and analyze the market to implement a growth strategy.",
         navPresentation: "Presentation",
         navDoc: "Documentation",
         navTest: "Test",
