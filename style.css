@@ -63,17 +63,6 @@ html, body {
     color: #f39c12;
 }
 
-/* /* Lang selector */
-/* .lang-container {
-    margin-top: auto;
-}
-
-.lang-btn {
-    width: 100%;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-} */ 
 /* Lang selector */
 .lang-container {
     margin-top: auto;
@@ -88,13 +77,21 @@ html, body {
     color: white;              /* Texte en blanc */
     font-weight: bold;
     cursor: pointer;
+
+    /* Forcer l'apparence */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    text-align: center;
 }
 
-/* Supprimer le style par défaut des <select> */
+/* Options */
 .lang-btn option {
     background-color: #1E90FF; /* Fond bleu dans la liste */
     color: white;              /* Texte en blanc */
 }
+
 /* Contenu principal */
 .content-wrapper {
     flex: 1; /* prend tout l’espace à droite */
@@ -104,12 +101,6 @@ html, body {
 }
 
 /* Main content */
-/* .main-content {
-    flex: 1;
-    padding: 30px;
-    background: transparent; /* pas de fond, juste le background image */
-    /* color: white; /* texte en blanc */
-/* }  */
 .main-content {
     flex: 1;
     padding: 30px;
