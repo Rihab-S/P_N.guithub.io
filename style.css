@@ -64,7 +64,7 @@ html, body {
 }
 
 /* Lang selector */
-.lang-container {
+/* .lang-container {
     margin-top: auto;
 }
 
@@ -74,22 +74,52 @@ html, body {
     border: none;
     border-radius: 5px;
     background-color: #1E90FF; /* Bleu */
-    color: white;              /* Texte en blanc */
-    font-weight: bold;
+    /* color: white;              /* Texte en blanc */
+    /* font-weight: bold;
     cursor: pointer;
 
     /* Forcer l'apparence */
-    appearance: none;
+    /* appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 
     text-align: center;
-}
+} */
 
 /* Options */
-.lang-btn option {
+/* .lang-btn option {
     background-color: #1E90FF; /* Fond bleu dans la liste */
-    color: white;              /* Texte en blanc */
+    /* color: white;              /* Texte en blanc */
+}   
+/* Lang selector avec drapeaux */
+.lang-container {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.lang-flag {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.lang-flag img {
+    width: 40px;   /* taille des bulles */
+    height: 40px;
+    border-radius: 50%;  /* rond */
+    border: 2px solid white;
+    object-fit: cover;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+/* Effet au survol */
+.lang-flag:hover img {
+    transform: scale(1.1);
+    border-color: #f39c12; /* orange au hover */
 }
 
 /* Contenu principal */
