@@ -150,6 +150,17 @@ footer {
 }
 
 /* Texte animé */
+/* .text-animation {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white;
+    display: inline-block;
+    animation: blink 0.8s infinite;
+} */
 .text-animation {
     font-size: 3rem;
     font-weight: bold;
@@ -160,6 +171,8 @@ footer {
     border-right: 2px solid white;
     display: inline-block;
     animation: blink 0.8s infinite;
+    width: 40ch;  /* largeur fixe approximative sur 40 caractères */
+    min-width: 40ch;
 }
 
 @keyframes blink {
