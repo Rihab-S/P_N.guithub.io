@@ -1,16 +1,18 @@
-/* Reset simple */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
 
-/* Layout */
-body {
-    font-family: Arial, sans-serif;
+/* Wrapper principal */
+.page-wrapper {
     display: flex;
-    min-height: 100vh;
+    min-height: 100vh; /* prend toute la hauteur de la page */
 }
 
 /* Sidebar */
@@ -43,7 +45,6 @@ body {
     color: #f39c12;
 }
 
-/* Lang selector */
 .lang-container {
     margin-top: auto;
 }
@@ -55,14 +56,23 @@ body {
     border-radius: 5px;
 }
 
-/* Main content */
+/* Zone principale */
+.content-wrapper {
+    flex: 1; /* occupe tout l’espace restant */
+    display: flex;
+    flex-direction: column;
+}
+
 .main-content {
-    flex: 1;
+    flex: 1; /* pousse le footer en bas */
     padding: 30px;
 }
 
-.intro {
-    margin-bottom: 20px;
+/* Footer */
+footer {
+    background: #ecf0f1;
+    text-align: center;
+    padding: 15px;
 }
 
 /* Texte animé */
@@ -73,7 +83,7 @@ body {
     margin-top: 20px;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid #2c3e50; /* Curseur */
+    border-right: 2px solid #2c3e50; /* curseur */
     display: inline-block;
     animation: blink 0.8s infinite;
 }
@@ -83,8 +93,15 @@ body {
     51%, 100% { border-color: #2c3e50; }
 }
 
-footer {
-    background: #ecf0f1;
-    text-align: center;
-    padding: 15px;
+/* Accessibilité */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
