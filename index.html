@@ -14,7 +14,6 @@
 
         <!-- Sidebar -->
         <nav class="sidebar" aria-label="Navigation principale">
-            <!-- Photo/logo -->
             <div class="sidebar-logo">
                 <img src="logo.png" alt="Logo Ponera">
             </div>
@@ -25,7 +24,7 @@
                 <li><a id="nav-test" href="#">Test</a></li>
             </ul>
 
-            <!-- Choix de langue -->
+            <!-- Choix de langue avec drapeaux -->
             <div class="lang-container">
                 <button class="lang-flag" onclick="changeLanguage('fr')">
                     <img src="fr.png" alt="Français">
@@ -38,35 +37,32 @@
 
         <!-- Contenu principal -->
         <div class="content-wrapper">
-            <main class="main-content">
-                <!-- Texte animé -->
+
+            <!-- Barre fixe pour texte animé -->
+            <div class="animation-bar">
                 <div class="text-animation">
                     <span id="animated-text"></span>
                 </div>
+            </div>
 
+            <main class="main-content">
                 <section class="intro">
-                    <p id="bio-text">
-                        Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces.
-                        Dès le premier jour, nos experts achètent vos produits, protègent votre marque et analysent le marché pour mettre en place une stratégie de croissance.
-                    </p>
+                    <p id="bio-text"></p>
                 </section>
 
                 <section>
-                    <h2 id="welcome-title">Bienvenue sur Ponera Project</h2>
-                    <p id="project-text">
-                        Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents.
-                    </p>
+                    <h2 id="welcome-title"></h2>
+                    <p id="project-text"></p>
                 </section>
             </main>
 
             <!-- Footer -->
             <footer>
-                <p id="footer-text">© 2025 Rihab Souissi. Tous droits réservés.</p>
+                <p id="footer-text"></p>
             </footer>
         </div>
     </div>
 
-    <!-- Script -->
     <script src="script.js" defer></script>
 </body>
 </html>
