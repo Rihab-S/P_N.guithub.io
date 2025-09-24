@@ -10,10 +10,10 @@ html, body {
 }
 
 /* Wrapper principal */
-.page-wrapper {
+/* .page-wrapper {
     display: flex;
     min-height: 100vh;
-}
+} */
 
 /* Sidebar */
 .sidebar {
@@ -70,7 +70,7 @@ html, body {
 }
 
 /* Contenu principal */
-.content-wrapper {
+.page-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -81,6 +81,7 @@ html, body {
     background-repeat: no-repeat; /* pas de répétition */
     padding: 20px;
     border-radius: 10px;          /* coins arrondis */
+    min-height: 100vh;
 }
 
 /* Main content */
