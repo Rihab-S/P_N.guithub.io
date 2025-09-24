@@ -11,9 +11,9 @@ const translations = {
         },
         footer: "© 2025 Rihab Souissi.",
         phrases: [
-            "Ponera protège votre marque| sur Amazon",
-            "Ponera augmente vos ventes| sur Amazon",
-            "Ponera vend vos produits| sur Amazon"
+            "protège votre marque| sur Amazon",
+            "augmente vos ventes| sur Amazon",
+            "vend vos produits| sur Amazon"
         ],
         welcome: "Bienvenue sur Ponera Project",
         project: "Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents."
@@ -30,9 +30,9 @@ const translations = {
         },
         footer: "© 2025 Rihab Souissi.",
         phrases: [
-            "Ponera protects your brand| on Amazon",
-            "Ponera boosts your sales| on Amazon",
-            "Ponera sells your products| on Amazon"
+            "protects your brand| on Amazon",
+            "boosts your sales| on Amazon",
+            "sells your products| on Amazon"
         ],
         welcome: "Welcome to Ponera Project",
         project: "Discover our projects, tests, and documentation on artificial intelligence and intelligent systems."
@@ -66,7 +66,7 @@ window.onload = function () {
     changeLanguage(savedLang);
 };
 
-/* Animation de texte */
+/* Animation de texte avec Ponera fixe */
 let animationInterval;
 
 function startTextAnimation(lang) {
@@ -75,9 +75,13 @@ function startTextAnimation(lang) {
     const textElement = document.getElementById("animated-text");
     const phrases = translations[lang].phrases;
 
-    // Définir une largeur fixe en fonction de la phrase la plus longue
+    const fixedPart = "Ponera "; // Texte fixe
+    textElement.innerHTML = `<span class="fixed">${fixedPart}</span><span class="animated"></span>`;
+    const animatedSpan = textElement.querySelector(".animated");
+
+    // Calculer la phrase la plus longue pour largeur fixe
     const maxLength = Math.max(...phrases.map(p => p.length));
-    textElement.style.width = `${maxLength}ch`;
+    textElement.style.width = `${fixedPart.length + maxLength}ch`;
 
     let phraseIndex = 0;
     let letterIndex = 0;
@@ -86,7 +90,7 @@ function startTextAnimation(lang) {
     function typeEffect() {
         const currentPhrase = phrases[phraseIndex];
         if (!isDeleting) {
-            textElement.textContent = currentPhrase.substring(0, letterIndex + 1);
+            animatedSpan.textContent = currentPhrase.substring(0, letterIndex + 1);
             letterIndex++;
             if (letterIndex === currentPhrase.length) {
                 isDeleting = true;
@@ -94,7 +98,7 @@ function startTextAnimation(lang) {
                 return;
             }
         } else {
-            textElement.textContent = currentPhrase.substring(0, letterIndex - 1);
+            animatedSpan.textContent = currentPhrase.substring(0, letterIndex - 1);
             letterIndex--;
             if (letterIndex === 0) {
                 isDeleting = false;
