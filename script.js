@@ -14,7 +14,9 @@ const translations = {
             "Ponera protège votre marque| sur Amazon",
             "Ponera augmente vos ventes| sur Amazon",
             "Ponera vend vos produits| sur Amazon"
-        ]
+        ],
+        welcome: "Bienvenue sur Ponera Project",
+        project: "Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents."
     },
     en: {
         bio: "Ponera is the first retailer 100% dedicated to selling brands on Amazon and Marketplaces. From day one, our experts buy your products, protect your brand and analyze the market to implement a growth strategy.",
@@ -31,7 +33,9 @@ const translations = {
             "Ponera protects your brand| on Amazon",
             "Ponera boosts your sales| on Amazon",
             "Ponera sells your products| on Amazon"
-        ]
+        ],
+        welcome: "Welcome to Ponera Project",
+        project: "Discover our projects, tests, and documentation on artificial intelligence and intelligent systems."
     }
 };
 
@@ -46,14 +50,16 @@ function changeLanguage(lang) {
     document.getElementById("nav-doc").setAttribute("href", translations[lang].links.doc);
     document.getElementById("nav-test").setAttribute("href", translations[lang].links.test);
 
+    document.getElementById("welcome-title").textContent = translations[lang].welcome;
+    document.getElementById("project-text").textContent = translations[lang].project;
+
     localStorage.setItem("lang", lang);
 
-    startTextAnimation(lang); // recharge les phrases de l’animation
+    startTextAnimation(lang); // recharge l’animation
 }
 
 window.onload = function () {
     const savedLang = localStorage.getItem("lang") || "fr";
-    document.getElementById("lang-select").value = savedLang;
     changeLanguage(savedLang);
 };
 
