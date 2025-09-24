@@ -82,12 +82,12 @@ html, body {
     border-radius: 5px;
 }
 
-/* Contenu principal */
-.content-wrapper {
+/* /* Contenu principal */
+/* .content-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
+} */ 
 
 .main-content {
     flex: 1;
