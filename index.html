@@ -20,52 +20,42 @@
             </div>
 
             <ul>
-                <li><a id="nav-presentation" href="Presentation_F.html">Présentation</a></li>
-                <li><a id="nav-doc" href="Documentation_F.html">Documentation</a></li>
-                <li><a id="nav-test" href="test_F.html">Test</a></li>
+                <li><a id="nav-presentation" href="#">Présentation</a></li>
+                <li><a id="nav-doc" href="#">Documentation</a></li>
+                <li><a id="nav-test" href="#">Test</a></li>
             </ul>
 
             <!-- Choix de langue -->
-            <!-- <div class="lang-container">
-                <label for="lang-select" class="visually-hidden">Choisir la langue</label>
-                <select id="lang-select" class="lang-btn" onchange="changeLanguage(this.value)">
-                    <option value="fr" selected>🌐 Français</option>
-                    <option value="en">🌐 English</option>
-                </select>
-            </div> -->
             <div class="lang-container">
-                <button class="lang-flag">
+                <button class="lang-flag" onclick="changeLanguage('fr')">
                     <img src="fr.png" alt="Français">
                 </button>
-                <button class="lang-flag">
+                <button class="lang-flag" onclick="changeLanguage('en')">
                     <img src="gb.png" alt="English">
                 </button>
             </div>
-
         </nav>
 
         <!-- Contenu principal -->
         <div class="content-wrapper">
             <main class="main-content">
-                                    <!-- Texte animé -->
+                <!-- Texte animé -->
                 <div class="text-animation">
                     <span id="animated-text"></span>
                 </div>
+
                 <section class="intro">
                     <p id="bio-text">
-                        Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces. 
+                        Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces.
                         Dès le premier jour, nos experts achètent vos produits, protègent votre marque et analysent le marché pour mettre en place une stratégie de croissance.
                     </p>
                 </section>
 
                 <section>
-                    <h2>Bienvenue sur Ponera Project</h2>
-                    <p>Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents.</p>
-
-                    <!-- Texte animé -->
-                    <!-- <div class="text-animation">
-                        <span id="animated-text"></span>
-                    </div> -->
+                    <h2 id="welcome-title">Bienvenue sur Ponera Project</h2>
+                    <p id="project-text">
+                        Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents.
+                    </p>
                 </section>
             </main>
 
@@ -74,7 +64,6 @@
                 <p id="footer-text">© 2025 Rihab Souissi. Tous droits réservés.</p>
             </footer>
         </div>
-
     </div>
 
     <!-- Script -->
