@@ -74,17 +74,20 @@ function startTextAnimation(lang) {
 
     const textElement = document.getElementById("animated-text");
     const phrases = translations[lang].phrases;
+
+    // Calculer la phrase la plus longue
+    const maxLength = Math.max(...phrases.map(p => p.length));
+    textElement.style.width = `${maxLength}ch`;
+
     let phraseIndex = 0;
     let letterIndex = 0;
     let isDeleting = false;
 
     function typeEffect() {
         const currentPhrase = phrases[phraseIndex];
-
         if (!isDeleting) {
             textElement.textContent = currentPhrase.substring(0, letterIndex + 1);
             letterIndex++;
-
             if (letterIndex === currentPhrase.length) {
                 isDeleting = true;
                 animationInterval = setTimeout(typeEffect, 700);
@@ -93,7 +96,6 @@ function startTextAnimation(lang) {
         } else {
             textElement.textContent = currentPhrase.substring(0, letterIndex - 1);
             letterIndex--;
-
             if (letterIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
