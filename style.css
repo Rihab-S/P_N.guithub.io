@@ -8,6 +8,19 @@ html, body {
     height: 100%;
 }
 
+/* Wrapper principal avec background image */
+.page-wrapper {
+    display: flex;                /* Sidebar à gauche + contenu à droite */
+    flex-direction: row;
+    min-height: 100vh;
+    position: relative;
+    background-image: url('back_ground.jpg');
+    background-size: cover;       /* l'image couvre tout l'écran */
+    background-position: center;  /* centrage de l'image */
+    background-repeat: no-repeat; /* pas de répétition */
+    color: white; /* texte en blanc */
+}
+
 /* Sidebar */
 .sidebar {
     width: 220px;
@@ -17,7 +30,7 @@ html, body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    min-height: 100vh;
+    min-height: 100vh; /* occupe toute la hauteur */
 }
 
 .sidebar-logo {
@@ -50,6 +63,7 @@ html, body {
     color: #f39c12;
 }
 
+/* Lang selector */
 .lang-container {
     margin-top: auto;
 }
@@ -61,24 +75,9 @@ html, body {
     border-radius: 5px;
 }
 
-/* Wrapper principal avec background image */
-.page-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position: relative;
-    background-image: url('back_ground.jpg');
-    background-size: cover;       /* l'image couvre tout le conteneur */
-    background-position: center;  /* centrage de l'image */
-    background-repeat: no-repeat; /* pas de répétition */
-    padding: 20px;
-    color: white; /* texte en blanc */
-}
-
 /* Contenu principal */
 .content-wrapper {
-    flex: 1;
+    flex: 1; /* prend tout l’espace à droite */
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -88,9 +87,8 @@ html, body {
 .main-content {
     flex: 1;
     padding: 30px;
-    /* border-radius: 10px; */
-    /* color: white; /* texte en blanc */
-    background: transparent; /* plus de fond semi-transparent */
+    background: transparent; /* pas de fond, juste le background image */
+    color: white; /* texte en blanc */
 }
 
 /* Footer */
@@ -99,8 +97,7 @@ footer {
     padding: 20px;
     width: 100%;
     color: white;
-    background: transparent; /* plus de fond */
-    border-radius: 0 0 10px 10px;
+    background: transparent; /* pas de fond */
 }
 
 /* Texte animé */
