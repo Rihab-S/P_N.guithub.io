@@ -75,7 +75,7 @@ function startTextAnimation(lang) {
     const textElement = document.getElementById("animated-text");
     const phrases = translations[lang].phrases;
 
-    const fixedPart = "Ponera "; // Texte fixe
+    const fixedPart = " "; // Texte fixe
     textElement.innerHTML = `<span class="fixed">${fixedPart}</span><span class="animated"></span>`;
     const animatedSpan = textElement.querySelector(".animated");
 
