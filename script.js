@@ -1,6 +1,6 @@
 const translations = {
     fr: {
-        bio: "Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et sur les Marketplaces. Dès le premier jour, nos experts achètent vos produits, protègent votre marque et analysent le marché pour mettre en place une stratégie de croissance.",
+        bio: "Avec notre service innovant, obtenez l’évaluation de votre produit avant même sa mise en vente. Anticipez les besoins de vos clients, ajustez votre offre et maximisez vos ventes en toute sérénité. Rejoignez-nous dès aujourd’hui et transformez chaque lancement en une expérience réussie et confiante !",
         navPresentation: "Présentation",
         navDoc: "Documentation",
         navTest: "Test",
@@ -11,9 +11,9 @@ const translations = {
         },
         footer: "© 2025 Rihab Souissi.",
         phrases: [
-            "protège votre marque| sur Amazon",
-            "augmente vos ventes| sur Amazon",
-            "vend vos produits| sur Amazon"
+            "Redoutez-vous les retours de vos produits ?",
+            "Ne laissez plus l’incertitude freiner votre succès !"
+            
         ],
         welcome: "Bienvenue sur Ponera Project",
         project: "Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents."
