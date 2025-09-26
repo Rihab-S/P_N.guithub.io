@@ -8,17 +8,13 @@ html, body {
     height: 100%;
 }
 
-/* Wrapper principal avec background image */
+/* Wrapper principal : texte à gauche, image à droite */
 .page-wrapper {
-    display: flex;                /* Sidebar à gauche + contenu à droite */
-    flex-direction: row;
+    display: flex;
+    flex-direction: row; /* texte à gauche, image à droite */
     min-height: 100vh;
     position: relative;
-    background-image: url('back_ground.jpg');
-    background-size: cover;       /* l'image couvre tout l'écran */
-    background-position: center;  /* centrage de l'image */
-    background-repeat: no-repeat; /* pas de répétition */
-    color: white; /* texte en blanc */
+    color: white;
 }
 
 /* Sidebar */
@@ -30,7 +26,7 @@ html, body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    min-height: 100vh; /* occupe toute la hauteur */
+    min-height: 100vh;
 }
 
 .sidebar-logo {
@@ -63,34 +59,6 @@ html, body {
     color: #f39c12;
 }
 
-/* Lang selector */
-/* .lang-container {
-    margin-top: auto;
-}
-
-.lang-btn {
-    width: 100%;
-    padding: 8px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #1E90FF; /* Bleu */
-    /* color: white;              /* Texte en blanc */
-    /* font-weight: bold;
-    cursor: pointer;
-
-    /* Forcer l'apparence */
-    /* appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    text-align: center;
-} */
-
-/* Options */
-/* .lang-btn option {
-    background-color: #1E90FF; /* Fond bleu dans la liste */
-    /* color: white;              /* Texte en blanc */
-}   
 /* Lang selector avec drapeaux */
 .lang-container {
     margin-top: auto;
@@ -108,36 +76,44 @@ html, body {
 }
 
 .lang-flag img {
-    width: 40px;   /* taille des bulles */
+    width: 40px;
     height: 40px;
-    border-radius: 50%;  /* rond */
+    border-radius: 50%;
     border: 2px solid white;
     object-fit: cover;
     transition: transform 0.3s, border-color 0.3s;
 }
 
-/* Effet au survol */
 .lang-flag:hover img {
     transform: scale(1.1);
-    border-color: #f39c12; /* orange au hover */
+    border-color: #f39c12;
 }
 
 /* Contenu principal */
 .content-wrapper {
-    flex: 1; /* prend tout l’espace à droite */
+    flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* texte à gauche, image à droite */
     padding: 20px;
 }
 
-/* Main content */
+/* Texte à gauche */
 .main-content {
     flex: 1;
     padding: 30px;
     background: transparent;
     color: white;
-    font-size: 1.3rem;   /* texte plus grand (≈ 20-21px) */
-    line-height: 1.6;    /* meilleure lisibilité */
+    font-size: 1.3rem;
+    line-height: 1.6;
+}
+
+/* Image à droite */
+.image-right {
+    flex: 1;
+    background-image: url('back_ground.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Footer */
@@ -146,21 +122,10 @@ footer {
     padding: 20px;
     width: 100%;
     color: white;
-    background: transparent; /* pas de fond */
+    background: transparent;
 }
 
 /* Texte animé */
-/* .text-animation {
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    margin-top: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid white;
-    display: inline-block;
-    animation: blink 0.8s infinite;
-} */
 .text-animation {
     font-size: 3rem;
     font-weight: bold;
@@ -171,7 +136,7 @@ footer {
     border-right: 2px solid white;
     display: inline-block;
     animation: blink 0.8s infinite;
-    width: 40ch;  /* largeur fixe approximative sur 40 caractères */
+    width: 40ch;
     min-width: 40ch;
 }
 
