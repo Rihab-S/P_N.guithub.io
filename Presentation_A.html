@@ -9,62 +9,59 @@
 </head>
 <body>
 
-    <!-- Wrapper global -->
-    <div class="page-wrapper">
-
-        <!-- Sidebar -->
-        <nav class="sidebar" aria-label="Navigation principale">
-            <div class="sidebar-logo">
-                <img src="logo.png" alt="Logo de Ponera">
-            </div>
-
-            <ul>
+    <!-- Barre de navigation en haut -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo de Ponera">
+        </div>
+        <nav>
+            <ul class="nav-links">
                 <li><a id="nav-presentation" href="#">Présentation</a></li>
                 <li><a id="nav-doc" href="#">Documentation</a></li>
                 <li><a id="nav-test" href="#">Test</a></li>
             </ul>
-
-            <!-- Choix de langue avec drapeaux -->
-            <div class="lang-container"> 
-                <button class="lang-flag" onclick="changeLanguage('fr')">
-                    <img src="fr.png" alt="Français">
-                </button>
-                <button class="lang-flag" onclick="changeLanguage('en')">
-                    <img src="gb.png" alt="English">
-                </button>
-            </div>
         </nav>
+        <div class="lang-container"> 
+            <button class="lang-flag" onclick="changeLanguage('fr')">
+                <img src="fr.png" alt="Français">
+            </button>
+            <button class="lang-flag" onclick="changeLanguage('en')">
+                <img src="gb.png" alt="English">
+            </button>
+        </div>
+    </header>
 
-        <!-- Contenu principal -->
-        <div class="content-wrapper"> 
-
-            <!-- Barre fixe pour texte animé -->
+    <!-- Contenu principal -->
+    <div class="content-wrapper"> 
+        <!-- Texte animé à gauche -->
+        <main class="main-content">
             <div class="animation-bar">
                 <div class="text-animation">
                     <span id="animated-text"></span>
                 </div>
             </div>
 
-            <!-- Contenu texte principal -->
-            <main class="main-content">
-                <section class="intro">
-                    <p id="bio-text"></p>
-                </section>
+            <section class="intro">
+                <p id="bio-text"></p>
+            </section>
 
-                <section>
-                    <h2 id="welcome-title"></h2>
-                    <p id="project-text"></p>
-                </section>
-            </main>
+            <section>
+                <h2 id="welcome-title"></h2>
+                <p id="project-text"></p>
+            </section>
+        </main>
 
-            <!-- Footer -->
-            <footer>
-                <p id="footer-text"></p>
-            </footer>
+        <!-- Image à droite -->
+        <div class="image-right">
+            <img src="back_ground.jpg" alt="Illustration projet">
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p id="footer-text"></p>
+    </footer>
 
     <script src="script.js" defer></script>
 </body>
 </html>
-
