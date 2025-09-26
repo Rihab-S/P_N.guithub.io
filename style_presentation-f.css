@@ -1,0 +1,63 @@
+/* Style global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+    background-color: #e6f0fa; /* bleu clair */
+    color: #333;
+}
+
+h1, h2 {
+    color: #1a3d6d;
+}
+
+header, section, footer {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Bouton retour */
+.btn-back {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #1a73e8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.btn-back:hover {
+    background-color: #155ab6;
+}
+
+/* Alternance texte / image */
+.alternate {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.alternate img {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.alternate.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 768px) {
+    .alternate,
+    .alternate.reverse {
+        flex-direction: column;
+    }
+}
