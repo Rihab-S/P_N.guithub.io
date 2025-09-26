@@ -13,13 +13,12 @@ const translations = {
         phrases: [
             "Redoutez-vous les retours de vos produits ?",
             "Ne laissez plus l’incertitude freiner votre succès !"
-            
         ],
         welcome: "Bienvenue sur Ponera Project",
         project: "Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents."
     },
     en: {
-        bio: "Ponera is the first retailer 100% dedicated to selling brands on Amazon and Marketplaces. From day one, our experts buy your products, protect your brand and analyze the market to implement a growth strategy.",
+        bio: "With our innovative service, get your product evaluated even before it goes on sale. Anticipate your customers’ needs, adjust your offer, and maximize your sales with confidence. Join us today and turn every launch into a successful experience!",
         navPresentation: "Presentation",
         navDoc: "Documentation",
         navTest: "Test",
@@ -30,13 +29,14 @@ const translations = {
         },
         footer: "© 2025 Rihab Souissi.",
         phrases: [
-            "protects your brand| on Amazon",
-            "boosts your sales| on Amazon",
-            "sells your products| on Amazon"
+            "Worried about product returns?",
+            "Don’t let uncertainty slow down your success!"
         ],
         welcome: "Welcome to Ponera Project",
         project: "Discover our projects, tests, and documentation on artificial intelligence and intelligent systems."
     }
+
+
 };
 
 function changeLanguage(lang) {
