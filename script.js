@@ -14,7 +14,7 @@ const translations = {
             "Redoutez-vous les retours de vos produits ?",
             "Ne laissez plus l’incertitude freiner votre succès !"
         ],
-        welcome: "Bienvenue sur Ponera Project",
+        welcome: "Bienvenue",
         project: "Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents."
     },
     en: {
@@ -32,7 +32,7 @@ const translations = {
             "Worried about product returns?",
             "Don’t let uncertainty slow down your success!"
         ],
-        welcome: "Welcome to Ponera Project",
+        welcome: "Welcome",
         project: "Discover our projects, tests, and documentation on artificial intelligence and intelligent systems."
     }
 
