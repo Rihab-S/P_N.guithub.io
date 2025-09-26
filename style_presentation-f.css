@@ -21,7 +21,7 @@ header, section, footer {
 }
 
 /* Bouton retour */
-.btn-back {
+/* .btn-back {
     display: inline-block;
     margin-bottom: 2rem;
     padding: 0.8rem 1.5rem;
@@ -34,6 +34,34 @@ header, section, footer {
 }
 .btn-back:hover {
     background-color: #155ab6;
+} */
+/* Bouton retour en bulle */
+.btn-back {
+    position: fixed;     /* reste visible */
+    top: 20px;           /* marge en haut */
+    left: 20px;          /* marge à gauche */
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;  /* rond */
+    background: white;
+    border: 2px solid #0B1B48;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+    text-decoration: none; /* supprime soulignement */
+}
+
+.btn-back img {
+    width: 24px;
+    height: 24px;
+}
+
+.btn-back:hover {
+    transform: scale(1.1);
+    border-color: #f39c12;
 }
 
 /* Alternance texte / image */
