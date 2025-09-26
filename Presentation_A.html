@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <meta name="description" content="Le premier revendeur 100% dédié à la vente des marques sur Amazon et les Marketplaces.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Wrapper global -->
+    <div class="page-wrapper">
+
+        <!-- Sidebar -->
+        <nav class="sidebar" aria-label="Navigation principale">
+            <div class="sidebar-logo">
+                <img src="logo.png" alt="Logo de Ponera">
+            </div>
+
+            <ul>
+                <li><a id="nav-presentation" href="#">Présentation</a></li>
+                <li><a id="nav-doc" href="#">Documentation</a></li>
+                <li><a id="nav-test" href="#">Test</a></li>
+            </ul>
+
+            <!-- Choix de langue avec drapeaux -->
+            <div class="lang-container"> 
+                <button class="lang-flag" onclick="changeLanguage('fr')">
+                    <img src="fr.png" alt="Français">
+                </button>
+                <button class="lang-flag" onclick="changeLanguage('en')">
+                    <img src="gb.png" alt="English">
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <div class="content-wrapper"> 
+
+            <!-- Barre fixe pour texte animé -->
+            <div class="animation-bar">
+                <div class="text-animation">
+                    <span id="animated-text"></span>
+                </div>
+            </div>
+
+            <!-- Contenu texte principal -->
+            <main class="main-content">
+                <section class="intro">
+                    <p id="bio-text"></p>
+                </section>
+
+                <section>
+                    <h2 id="welcome-title"></h2>
+                    <p id="project-text"></p>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer>
+                <p id="footer-text"></p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
 
