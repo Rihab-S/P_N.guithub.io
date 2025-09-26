@@ -1,106 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Présentation MVP - Ponera</title>
-    <meta name="description" content="Présentation de MVP pour prédire le risque de retour des produits vendus par Ponera sur Amazon.">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 2rem;
-            line-height: 1.6;
-            background-color: #e6f0fa; /* bleu clair */
-            color: #333;
-        }
-        h1, h2 {
-            color: #1a3d6d;
-        }
-        header, section, footer {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-        .btn-back {
-            display: inline-block;
-            margin-bottom: 2rem;
-            padding: 0.8rem 1.5rem;
-            background-color: #1a73e8;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .btn-back:hover {
-            background-color: #155ab6;
-        }
-        .images {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .images img {
-            max-width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-    </style>
-</head>
-<body>
+<section>
+    <h2>Illustrations</h2>
 
-    <!-- Bouton retour -->
-    <a href="index.html" class="btn-back">⬅ Retour à l'accueil</a>
-
-    <header>
-        <h1>Présentation MVP - Ponera</h1>
-        <p>Cette page présente le MVP proposé pour anticiper le risque de retour des produits vendus sur Amazon.</p>
-    </header>
-
-    <section>
-        <h2>Objectif</h2>
-        <p>Le but de ce MVP est de proposer une solution basée sur l’intelligence artificielle pour prédire les produits à fort risque de retour avant leur mise en vente.</p>
-    </section>
-
-    <section>
-        <h2>Défi</h2>
-        <p>Le défi consiste à :</p>
-        <ul>
-            <li>Identifier les produits à risque sur Amazon (mention “Vendu par Ponera”).</li>
-            <li>Récupérer leur ASIN et utiliser les données disponibles pour calculer un score de risque de retour.</li>
-            <li>Présenter un prototype ou une démonstration de votre solution IA.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Approche proposée</h2>
-        <p>Le MVP peut inclure :</p>
-        <ul>
-            <li>Un modèle IA simple pour prédire le risque de retour.</li>
-            <li>Une visualisation des produits avec leur score de risque.</li>
-            <li>Une démonstration basée sur les données disponibles pour chaque ASIN.</li>
-        </ul>
-        <p>L’objectif est de montrer comment la solution peut réduire les retours coûteux et améliorer la gestion des produits.</p>
-    </section>
-
-    <section>
-        <h2>Illustrations</h2>
-        <p>Voici un espace réservé pour insérer vos images :</p>
-        <div class="images">
-            <img src="img-1.png" alt="Illustration MVP 1">
-            <img src="img-2.png" alt="Illustration MVP 2">
-            <img src="img-3.png" alt="Illustration MVP 3">
+    <div class="alternate">
+        <div class="text">
+            <p>Voici la première explication de ton MVP avec l’image à droite.</p>
         </div>
-    </section>
+        <img src="img-1.png" alt="Illustration MVP 1">
+    </div>
 
-    <footer>
-        <p>© 2025 Ponera - Projet MVP</p>
-    </footer>
+    <div class="alternate reverse">
+        <div class="text">
+            <p>Et ici, l’image passe à gauche et le texte à droite.</p>
+        </div>
+        <img src="img-2.png" alt="Illustration MVP 2">
+    </div>
 
-</body>
-</html>
+    <div class="alternate">
+        <div class="text">
+            <p>Encore une section avec l’image à droite et le texte à gauche.</p>
+        </div>
+        <img src="img-3.png" alt="Illustration MVP 3">
+    </div>
+</section>
