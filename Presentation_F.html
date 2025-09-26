@@ -9,30 +9,53 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 2rem;
+            margin: 0;
+            padding: 2rem;
             line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: #e6f0fa; /* bleu clair */
             color: #333;
         }
         h1, h2 {
-            color: #2c3e50;
+            color: #1a3d6d;
         }
-        section {
+        header, section, footer {
             margin-bottom: 2rem;
-            padding: 1rem;
+            padding: 1.5rem;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
-        code {
-            background-color: #eef;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #1a73e8;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-back:hover {
+            background-color: #155ab6;
+        }
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .images img {
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
+
+    <!-- Bouton retour -->
+    <a href="index.html" class="btn-back">⬅ Retour à l'accueil</a>
 
     <header>
         <h1>Présentation MVP - Ponera</h1>
@@ -65,10 +88,19 @@
         <p>L’objectif est de montrer comment la solution peut réduire les retours coûteux et améliorer la gestion des produits.</p>
     </section>
 
+    <section>
+        <h2>Illustrations</h2>
+        <p>Voici un espace réservé pour insérer vos images :</p>
+        <div class="images">
+            <img src="img-1.png" alt="Illustration MVP 1">
+            <img src="img-2.png" alt="Illustration MVP 2">
+            <img src="img-3.png" alt="Illustration MVP 3">
+        </div>
+    </section>
+
     <footer>
         <p>© 2025 Ponera - Projet MVP</p>
     </footer>
 
 </body>
 </html>
-
