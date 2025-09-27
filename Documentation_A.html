@@ -1,62 +1,161 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product Prediction Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation: Multi-modal Method, Text Cleaning and Sentiment Analysis</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f5f5f5; }
+        h1, h2 { color: #333; }
+        code { background-color: #eaeaea; padding: 2px 5px; border-radius: 3px; }
+        pre { background-color: #eaeaea; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        section { background-color: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        .diagram { display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; }
+        .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; margin-bottom: 10px; }
+        .arrow { width: 5%; text-align: center; font-size: 24px; line-height: 80px; }
+        .images { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
+        .images img { width: 300px; height: 200px; object-fit: cover; cursor: pointer; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+        .caption { text-align: center; font-style: italic; margin-top: 5px; }
 
-        h1 {
-            color: #444;
-            text-align: center;
-        }
-
-        p {
-            text-align: center;
-            font-size: 1.1em;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        .open-space-button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 1.2em;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .open-space-button:hover {
-            background-color: #45a049;
-        }
+        /* Modal style */
+        .modal { display: none; position: fixed; z-index: 1000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+                 background-color: rgba(0,0,0,0.8); }
+        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80%; border-radius: 10px; }
+        .modal-caption { text-align: center; color: #fff; margin-top: 10px; }
+        .close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>Product Prediction Test</h1>
-    <p>Click the button below to open the model testing interface on Hugging Face Space.</p>
 
-    <div class="button-container">
-        <a class="open-space-button" href="https://huggingface.co/spaces/Rihab-s/Newpn" target="_blank">
-            Open Space
-        </a>
+<h1>Complete Documentation: Multi-modal, Text Cleaning and Sentiment Analysis</h1>
+
+<section>
+<h2>1️⃣ Text Cleaning</h2>
+<p>The text is cleaned in a multilingual way:</p>
+<ul>
+    <li>Automatic language detection.</li>
+    <li>Conversion to lowercase.</li>
+    <li>Removal of punctuation.</li>
+    <li>Removal of stopwords according to detected language (English as default).</li>
+</ul>
+
+<div class="images">
+    <div>
+        <img src="raw_text_example.png" alt="Raw text" onclick="openModal(this)">
+        <div class="caption">Example of raw data with punctuation, uppercase, and useless words.</div>
     </div>
+    <div>
+        <img src="cleaned_text_example.png" alt="Cleaned text" onclick="openModal(this)">
+        <div class="caption">Example of cleaned data.</div>
+    </div>
+</div>
 
-    <p style="text-align:center; margin-top:50px; font-size:0.9em; color:#777;">
-        The model interface runs on Hugging Face Space. This page serves only as a link to the application.
-    </p>
+<!-- Modal for images -->
+<div id="imgModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div class="modal-caption" id="modalCaption"></div>
+</div>
+</section>
+
+<section>
+<h2>3️⃣ Hyperparameter-tuning RandomForest</h2>
+<p>Search for the best <strong>RandomForest</strong> hyperparameters with cross-validation:</p>
+
+<div class="images">
+    <div>
+        <img src="RF_hyper.png" alt="RandomForest tuning curve" onclick="openModal(this)">
+        <div class="caption">Performance variation depending on the number of estimators and depth.</div>
+    </div>
+    <div>
+        <img src="RF_hyper_tf_df.png" alt="TF-IDF RandomForest optimization" onclick="openModal(this)">
+        <div class="caption">Joint optimization of TF-IDF max_features and RandomForest.</div>
+    </div>
+</div>
+
+<ul>
+    <li><strong>Best RMSE</strong>: 0.4161 with parameters (n_estimators=220, max_depth=7)</li>
+    <li><strong>Best TF-IDF max_features</strong>: 260 with RMSE=0.415</li>
+</ul>
+</section>
+
+<section>
+<h2>6️⃣ CatBoost Model for Multi-modal Data</h2>
+<p>In addition to RandomForest, <strong>CatBoost</strong> is used to efficiently handle heterogeneous data:</p>
+<ul>
+    <li>Native support of <strong>categorical data</strong> (e.g. <code>ASIN</code>) without the need for One-hot encoding.</li>
+    <li>Automatic handling of <strong>missing values</strong>.</li>
+    <li>Robust to <strong>class imbalance</strong> and noisy datasets.</li>
+    <li>Can be combined with extracted <strong>image features</strong> (ResNet18).</li>
+</ul>
+
+<div class="images">
+    <div>
+        <img src="cat_hyper.png" alt="CatBoost training" onclick="openModal(this)">
+        <div class="caption">Example of CatBoost training with early stopping.</div>
+    </div>
+    <div>
+        <img src="cat_hyper_tf.png" alt="CatBoost results" onclick="openModal(this)">
+        <div class="caption">Performance comparison: CatBoost vs RandomForest.</div>
+    </div>
+</div>
+
+<ul>
+    <li><strong>Best CatBoost parameters</strong>: {iterations=350, learning_rate=0.3, depth=6} → RMSE = 0.4138</li>
+    <li><strong>Best max_features</strong>: 300 → RMSE = 0.3484</li>
+</ul>
+</section>
+
+<section>
+<h2>3️⃣ Multi-modal Combination for Prediction</h2>
+<p>The features used in the supervised model:</p>
+<ul>
+    <li><strong>Cleaned text → TF-IDF</strong> (title, review)</li>
+    <li><strong>ASIN</strong> → One-hot encoding</li>
+    <li><strong>Price</strong> → Normalization</li>
+    <li><strong>Image</strong> → ResNet18 features</li>
+</ul>
+<pre><code>X_final = [TF-IDF cleaned text | One-hot ASIN | Normalized Price | Image Features]</code></pre>
+</section>
+
+<section>
+<h2>4️⃣ Global Pipeline Scheme</h2>
+<div class="diagram">
+    <div class="box">Raw Database<br>(Text, Price, ASIN, Image)</div>
+    <div class="arrow">➔</div>
+    <div class="box">Text Cleaning<br>(stopword removal, normalization)</div>
+    <div class="arrow">➔</div>
+    <div class="box">Feature Extraction<br>TF-IDF | One-hot | Normalization | ResNet18</div>
+    <div class="arrow">➔</div>
+    <div class="box">Concatenation</div>
+    <div class="arrow">➔</div>
+    <div class="box">Supervised Model<br>(CatBoost)</div>
+</div>
+</section>
+
+<section>
+<h2>5️⃣ Advantages</h2>
+<ul>
+    <li><strong>Complete pipeline</strong>: cleaning → features → model.</li>
+    <li><strong>Multi-modality</strong>: text, category, price, image.</li>
+    <li><strong>Multilingual standardization</strong>: consistency across languages.</li>
+    <li><strong>CatBoost</strong> efficiently handles heterogeneous data to predict Amazon <code>ratings</code>.</li>
+</ul>
+</section>
+
+<script>
+function openModal(imgElement) {
+    var modal = document.getElementById("imgModal");
+    var modalImg = document.getElementById("modalImg");
+    var captionText = document.getElementById("modalCaption");
+    modal.style.display = "block";
+    modalImg.src = imgElement.src;
+    captionText.innerHTML = imgElement.alt;
+}
+function closeModal() {
+    document.getElementById("imgModal").style.display = "none";
+}
+</script>
+
 </body>
 </html>
