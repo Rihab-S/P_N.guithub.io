@@ -79,7 +79,15 @@
     <li>Le score "compound" sert de seuil de classification.</li>
     <li><code>review_title</code> et <code>review_body</code> sont combinés pour créer <code>full_review</code>.</li>
 </ul>
-<pre><code>def get_sentiment(text):
+
+<div class="images">
+    <div>
+        <img src="database_example.png" alt="Exemple de base de données avec reviews" onclick="openModal(this)">
+        <div class="caption">Exemple de base de données de reviews avant et après ajout du sentiment.</div>
+    </div>
+</div>
+
+<!-- <pre><code>def get_sentiment(text):
     scores = sia.polarity_scores(text)
     compound = scores["compound"]
     if compound >= 0.05: return "positive"
@@ -87,8 +95,9 @@
     else: return "neutral"
 
 df["full_review"] = df["review_title"] + " " + df["review_body"]
-df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre>
+df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre> -->
 </section>
+
 
 <section>
 <h2>3️⃣ Combinaison multi-modale pour prédiction</h2>
