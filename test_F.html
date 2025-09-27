@@ -2,24 +2,61 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test Produit ML</title>
+    <title>Test de Prédiction de Produit</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { color: #333; }
-        iframe { border: 1px solid #ccc; border-radius: 8px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            color: #444;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .open-space-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .open-space-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-    <h1>Test de prédiction de rating</h1>
-    <p>Entrez les informations du produit dans le Space ci-dessous :</p>
+    <h1>Test de Prédiction de Produit</h1>
+    <p>Cliquez sur le bouton ci-dessous pour ouvrir l’interface de test du modèle sur Hugging Face Space.</p>
 
-    <!-- Intégration du Hugging Face Space via iframe -->
-    <iframe
-        src="https://huggingface.co/spaces/Rihab-s/Newpn" 
-        width="100%" 
-        height="900px" 
-        frameborder="0"
-        allowfullscreen
-    ></iframe>
+    <div class="button-container">
+        <a class="open-space-button" href="https://huggingface.co/spaces/Rihab-s/Newpn" target="_blank">
+            Ouvrir le Space
+        </a>
+    </div>
+
+    <p style="text-align:center; margin-top:50px; font-size:0.9em; color:#777;">
+        L’interface du modèle s’exécute sur Hugging Face Space. Cette page sert uniquement de lien vers l’application.
+    </p>
 </body>
 </html>
