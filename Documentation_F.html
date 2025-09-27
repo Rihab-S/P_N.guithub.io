@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +13,9 @@
         .diagram { display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; }
         .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; margin-bottom: 10px; }
         .arrow { width: 5%; text-align: center; font-size: 24px; line-height: 80px; }
+        .images { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
+        .images img { width: 300px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+        .caption { text-align: center; font-style: italic; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -29,6 +31,18 @@
     <li>Suppression de la ponctuation.</li>
     <li>Suppression des stopwords selon la langue détectée (anglais par défaut).</li>
 </ul>
+
+<div class="images">
+    <div>
+        <img src="raw_text_example.png" alt="Texte brut">
+        <div class="caption">Exemple de données brutes avec ponctuation, majuscules et mots inutiles.</div>
+    </div>
+    <div>
+        <img src="cleaned_text_example.png" alt="Texte nettoyé">
+        <div class="caption">Texte nettoyé et standardisé pour l’analyse (multilingue).</div>
+    </div>
+</div>
+
 <pre><code>def clean_text(text):
     if pd.isna(text):
         return ""
@@ -47,68 +61,58 @@
 <h2>2️⃣ Analyse de sentiment avec VADER</h2>
 <p>Après nettoyage, une analyse de sentiment est effectuée :</p>
 <ul>
-    <li>VADER (Valence Aware Dictionary and sEntiment Reasoner) est un outil d’analyse de sentiment basé sur un lexique et des règles, spécifiquement conçu pour détecter les sentiments exprimés sur les réseaux sociaux, et qui fonctionne également bien sur des textes provenant d’autres domaines.
-
-Le lexique VADER a été validé empiriquement par plusieurs juges humains indépendants. Il intègre un lexique de sentiment « gold standard » particulièrement adapté aux contextes de type microblog.</li>
-    <li>Le score "compound" est utilisé pour classer le texte en <strong>positive</strong>, <strong>neutral</strong> ou <strong>negative</strong>.</li>
-    <li>Les colonnes <code>review_title</code> et <code>review_body</code> sont combinées pour former <code>full_review</code> avant analyse.</li>
+    <li>VADER attribue un score de sentiment (<strong>positif</strong>, <strong>neutre</strong>, <strong>négatif</strong>).</li>
+    <li>Le score "compound" sert de seuil de classification.</li>
+    <li><code>review_title</code> et <code>review_body</code> sont combinés pour créer <code>full_review</code>.</li>
 </ul>
 <pre><code>def get_sentiment(text):
-    if pd.isna(text) or text.strip() == "":
-        return "neutral"
     scores = sia.polarity_scores(text)
     compound = scores["compound"]
-    if compound >= 0.05:
-        return "positive"
-    elif compound <= -0.05:
-        return "negative"
-    else:
-        return "neutral"
+    if compound >= 0.05: return "positive"
+    elif compound <= -0.05: return "negative"
+    else: return "neutral"
 
-df["full_review"] = df["review_title"].astype(str) + " " + df["review_body"].astype(str)
+df["full_review"] = df["review_title"] + " " + df["review_body"]
 df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre>
-
-<p>Le résultat est sauvegardé dans le fichier final <code>data_ponera_with_sentiment.csv</code>.</p>
 </section>
 
 <section>
 <h2>3️⃣ Combinaison multi-modale pour prédiction</h2>
-<p>Après nettoyage et analyse de sentiment, les caractéristiques sont combinées :</p>
+<p>Les caractéristiques utilisées dans le modèle supervisé :</p>
 <ul>
-    <li><strong>Texte nettoyé / TF-IDF</strong> (titre, review)</li>
-    <li><strong>ASIN</strong> : One-hot encoding</li>
-    <li><strong>Prix</strong> : Normalisation</li>
-    <li><strong>Image</strong> : ResNet18 features</li>
-    <li><strong>Sentiment</strong> : peut être utilisé comme feature additionnelle</li>
+    <li><strong>Texte nettoyé → TF-IDF</strong> (titre, review)</li>
+    <li><strong>ASIN</strong> → One-hot encoding</li>
+    <li><strong>Prix</strong> → Normalisation</li>
+    <li><strong>Image</strong> → ResNet18 features</li>
+    <li><strong>Sentiment</strong> → Score VADER (feature additionnelle)</li>
 </ul>
 <pre><code>X_final = [TF-IDF texte nettoyé | One-hot ASIN | Prix normalisé | Features image | Sentiment]</code></pre>
 </section>
 
 <section>
-<h2>4️⃣ Schéma conceptuel</h2>
+<h2>4️⃣ Schéma global du pipeline</h2>
 <div class="diagram">
-    <div class="box">Titre / Review (TF-IDF)</div>
+    <div class="box">Base de données brute<br>(Texte, Prix, ASIN, Image)</div>
     <div class="arrow">➔</div>
-    <div class="box">ASIN (One-hot)</div>
+    <div class="box">Nettoyage Texte<br>(suppression stopwords, normalisation)</div>
     <div class="arrow">➔</div>
-    <div class="box">Prix (normalisé)</div>
+    <div class="box">Analyse de Sentiment<br>(VADER)</div>
     <div class="arrow">➔</div>
-    <div class="box">Image (ResNet features)</div>
+    <div class="box">Extraction de Features<br>TF-IDF | One-hot | Normalisation | ResNet18</div>
     <div class="arrow">➔</div>
-    <div class="box">Sentiment (VADER)</div>
+    <div class="box">Concaténation</div>
     <div class="arrow">➔</div>
-    <div class="box">Concaténation → CatBoost</div>
+    <div class="box">Modèle Supervisé<br>(CatBoost)</div>
 </div>
 </section>
 
 <section>
 <h2>5️⃣ Avantages</h2>
 <ul>
-    <li>Multi-modale : texte, catégorie, prix, image et sentiment.</li>
-    <li>Nettoyage multilingue standardise le texte.</li>
-    <li>Analyse de sentiment capture l’opinion exprimée dans la review.</li>
-    <li>TF-IDF + ASIN + Prix + Image + Sentiment : combinaison complète pour prédiction précise.</li>
-    <li>CatBoost gère efficacement les données hétérogènes.</li>
+    <li><strong>Pipeline complet</strong> : nettoyage → sentiment → features → modèle.</li>
+    <li><strong>Multi-modalité</strong> : texte, catégorie, prix, image et sentiment.</li>
+    <li><strong>Standardisation multilingue</strong> : cohérence entre langues.</li>
+    <li><strong>CatBoost</strong> gère efficacement données hétérogènes pour prédire les <code>ratings</code> Amazon.</li>
 </ul>
 </section>
 
