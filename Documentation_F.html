@@ -91,6 +91,30 @@
 
 </ul>
 </section>
+<section>
+<h2>6️⃣ Modèle CatBoost pour données multi-modales</h2>
+<p>En complément du RandomForest, <strong>CatBoost</strong> est utilisé pour traiter efficacement les données hétérogènes :</p>
+<ul>
+    <li>Support natif des <strong>données catégorielles</strong> (ex. <code>ASIN</code>) sans besoin de One-hot encoding.</li>
+    <li>Gestion automatique des <strong>valeurs manquantes</strong>.</li>
+    <li>Robuste aux <strong>déséquilibres de classes</strong> et aux jeux de données bruités.</li>
+    <li>Peut être combiné avec les <strong>features d’images</strong> extraites (ResNet18).</li>
+</ul>
+
+<div class="images">
+    <div>
+        <img src="cat_hyper.png" alt="Entraînement CatBoost" onclick="openModal(this)">
+        <div class="caption">Exemple d’entraînement CatBoost avec early stopping.</div>
+    </div>
+    <div>
+        <img src="cat_hyper_tf.png" alt="Résultats CatBoost" onclick="openModal(this)">
+        <div class="caption">Comparaison des performances : CatBoost vs RandomForest.</div>
+    </div>
+</div>
+
+
+
+</section>
 
 
     
