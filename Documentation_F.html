@@ -47,7 +47,9 @@
 <h2>2️⃣ Analyse de sentiment avec VADER</h2>
 <p>Après nettoyage, une analyse de sentiment est effectuée :</p>
 <ul>
-    <li>VADER (Valence Aware Dictionary for Sentiment Reasoning) est utilisé pour attribuer un score de sentiment à chaque review.</li>
+    <li>VADER (Valence Aware Dictionary and sEntiment Reasoner) est un outil d’analyse de sentiment basé sur un lexique et des règles, spécifiquement conçu pour détecter les sentiments exprimés sur les réseaux sociaux, et qui fonctionne également bien sur des textes provenant d’autres domaines.
+
+Le lexique VADER a été validé empiriquement par plusieurs juges humains indépendants. Il intègre un lexique de sentiment « gold standard » particulièrement adapté aux contextes de type microblog.</li>
     <li>Le score "compound" est utilisé pour classer le texte en <strong>positive</strong>, <strong>neutral</strong> ou <strong>negative</strong>.</li>
     <li>Les colonnes <code>review_title</code> et <code>review_body</code> sont combinées pour former <code>full_review</code> avant analyse.</li>
 </ul>
