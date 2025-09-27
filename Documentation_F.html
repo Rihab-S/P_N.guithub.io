@@ -4,92 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation du Code CatBoost avec Textes et Images</title>
+    <title>Explication Méthode Multi-modale</title>
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f5f5f5; }
         h1, h2 { color: #333; }
         code { background-color: #eaeaea; padding: 2px 5px; border-radius: 3px; }
         pre { background-color: #eaeaea; padding: 10px; border-radius: 5px; overflow-x: auto; }
         section { background-color: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        .diagram { display: flex; justify-content: space-around; margin-top: 20px; }
+        .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; }
+        .arrow { width: 5%; text-align: center; font-size: 24px; line-height: 80px; }
     </style>
 </head>
 <body>
 
-<h1>Documentation du Code CatBoost avec Textes et Images</h1>
+<h1>Méthode Multi-modale pour Prédiction des Notes</h1>
 
 <section>
-<h2>0️⃣ Chargement du dataset et stopwords</h2>
-<p>Le code commence par charger un fichier CSV contenant les données des produits, avec une colonne de sentiment/notation. Il importe également les stopwords de NLTK pour le traitement du texte.</p>
-<pre><code>df = pd.read_csv("data_ponera_with_sentiment.csv")
-nltk.download('stopwords')
-all_stopwords_list = list(set(word for lang in stopwords.fileids() for word in stopwords.words(lang)))</code></pre>
+<h2>Concept</h2>
+<p>Le modèle combine différentes sources d'information : texte (titre), catégorielle (ASIN), numérique (prix), et image (photo). Chaque type de donnée est transformé en vecteurs de caractéristiques, puis tous sont concaténés pour former une représentation complète du produit.</p>
 </section>
 
 <section>
-<h2>1️⃣ Prétraitement des colonnes numériques</h2>
-<p>Les colonnes numériques (ici <code>rating</code> et <code>sale_price</code>) sont converties en nombres float. Les valeurs invalides ou manquantes sont gérées.</p>
-<pre><code>for col in ["rating", "sale_price"]:
-    df[col] = pd.to_numeric(df[col].astype(str).str.replace(",", "."), errors="coerce")
-df = df.dropna(subset=['rating'])</code></pre>
+<h2>Sources de données et transformations</h2>
+<ul>
+    <li><strong>Texte (titre)</strong> : Transformé en vecteurs TF-IDF pour capturer la signification des mots.</li>
+    <li><strong>Catégorie (ASIN)</strong> : One-hot encoding pour capturer l’identité unique du produit.</li>
+    <li><strong>Prix</strong> : Normalisation après imputation pour capturer l’effet du prix.</li>
+    <li><strong>Image</strong> : ResNet18 pré-entraîné génère 512 caractéristiques représentant l’apparence visuelle.</li>
+</ul>
 </section>
 
 <section>
-<h2>2️⃣ Prétraitement des colonnes catégorielles et textuelles</h2>
-<p>Les colonnes textuelles et catégorielles sont remplies avec des chaînes vides pour les valeurs manquantes et converties en string.</p>
-<pre><code>for col in ["title", "asin", "featured_image_source"]:
-    df[col] = df[col].fillna("").astype(str)</code></pre>
+<h2>Combinaison multi-modale</h2>
+<p>Toutes les caractéristiques sont concaténées pour former un vecteur unique par produit :</p>
+<pre><code>X_final = [TF-IDF titre | One-hot ASIN | Prix normalisé | Features image]</code></pre>
+<p>Ce vecteur est ensuite utilisé comme entrée pour le modèle CatBoost qui prédit la note.</p>
 </section>
 
 <section>
-<h2>3️⃣ Séparation train/test</h2>
-<p>Le jeu de données est divisé en train/test avec un ratio de 80/20 pour entraîner et évaluer le modèle.</p>
-<pre><code>X_train_base, X_test_base, y_train_rating, y_test_rating = train_test_split(
-    X_base, y_rating, test_size=0.2, random_state=42
-)</code></pre>
+<h2>Schéma conceptuel</h2>
+<div class="diagram">
+    <div class="box">Titre (TF-IDF)</div>
+    <div class="arrow">➔</div>
+    <div class="box">ASIN (One-hot)</div>
+    <div class="arrow">➔</div>
+    <div class="box">Prix (normalisé)</div>
+    <div class="arrow">➔</div>
+    <div class="box">Image (ResNet features)</div>
+    <div class="arrow">➔</div>
+    <div class="box">Concaténation → CatBoost</div>
+</div>
 </section>
 
 <section>
-<h2>4️⃣ Extraction des features des images</h2>
-<p>ResNet18 pré-entraîné est utilisé pour extraire les caractéristiques des images, qui seront combinées avec les données tabulaires.</p>
-<pre><code>resnet = resnet18(weights="IMAGENET1K_V1")
-resnet = torch.nn.Sequential(*list(resnet.children())[:-1])
-resnet.eval().to(device)</code></pre>
-<p>Les images sont transformées en tenseurs 224x224 avant extraction des features.</p>
-</section>
-
-<section>
-<h2>5️⃣ Boucle sur différents max_features pour TF-IDF</h2>
-<p>Différentes tailles de vocabulaire pour TF-IDF sont testées pour trouver celle qui minimise l'erreur RMSE sur le test set.</p>
-<pre><code>max_features_list = [100, 200, 300, 400, 500]
-for mf in max_features_list:
-    # Création des pipelines pour les colonnes numériques, textuelles et catégorielles
-    # Transformation des données et combinaison avec les features images
-    # Entraînement du modèle CatBoost
-    # Calcul et enregistrement du RMSE</code></pre>
-</section>
-
-<section>
-<h2>6️⃣ Visualisation RMSE vs max_features</h2>
-<p>Un graphique montre la performance du modèle en fonction du nombre de features TF-IDF.</p>
-<pre><code>plt.figure(figsize=(10,6))
-plt.plot(max_features_list, rmse_list, marker='o')
-plt.xlabel("TF-IDF max_features")
-plt.ylabel("RMSE")
-plt.title("CatBoost RMSE vs TF-IDF max_features")
-plt.grid(True)
-plt.show()</code></pre>
-</section>
-
-<section>
-<h2>7️⃣ Entraînement final et sauvegarde du modèle</h2>
-<p>Le meilleur nombre de features est sélectionné, le modèle final est entraîné, et le préprocesseur et le modèle sont sauvegardés.</p>
-<pre><code>final_model = CatBoostRegressor(...)
-final_model.fit(X_train_full, y_train_rating, eval_set=(X_test_full, y_test_rating))
-final_model.save_model("catboost_tfidf_best_model.cbm")
-joblib.dump(preprocessor, "preprocessor_with_images_cat.pkl")</code></pre>
-<p>✅ Préprocesseur et modèle finaux sauvegardés pour usage futur.</p>
+<h2>Pourquoi cette approche est efficace</h2>
+<ul>
+    <li>Multi-modale : Utilise toutes les sources d'information pour une meilleure prédiction.</li>
+    <li>TF-IDF + ASIN : Capture le texte descriptif et l'identifiant unique du produit.</li>
+    <li>Prix + Image : Capture les indices numériques et visuels influençant la perception.</li>
+    <li>CatBoost : Modèle performant pour données hétérogènes, capable de combiner numérique et catégoriel.</li>
+</ul>
 </section>
 
 </body>
 </html>
-
