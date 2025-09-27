@@ -4,48 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explication Méthode Multi-modale</title>
+    <title>Documentation Méthode Multi-modale, Nettoyage Texte et Analyse Sentiment</title>
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f5f5f5; }
         h1, h2 { color: #333; }
         code { background-color: #eaeaea; padding: 2px 5px; border-radius: 3px; }
         pre { background-color: #eaeaea; padding: 10px; border-radius: 5px; overflow-x: auto; }
         section { background-color: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        .diagram { display: flex; justify-content: space-around; margin-top: 20px; }
-        .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; }
+        .diagram { display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; }
+        .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; margin-bottom: 10px; }
         .arrow { width: 5%; text-align: center; font-size: 24px; line-height: 80px; }
     </style>
 </head>
 <body>
 
-<h1>Méthode Multi-modale pour Prédiction des Notes</h1>
+<h1>Documentation Complète : Multi-modale, Nettoyage Texte et Analyse de Sentiment</h1>
 
 <section>
-<h2>Concept</h2>
-<p>Le modèle combine différentes sources d'information : texte (titre), catégorielle (ASIN), numérique (prix), et image (photo). Chaque type de donnée est transformé en vecteurs de caractéristiques, puis tous sont concaténés pour former une représentation complète du produit.</p>
-</section>
-
-<section>
-<h2>Sources de données et transformations</h2>
+<h2>1️⃣ Nettoyage des textes</h2>
+<p>Le texte est nettoyé de manière multilingue :</p>
 <ul>
-    <li><strong>Texte (titre)</strong> : Transformé en vecteurs TF-IDF pour capturer la signification des mots.</li>
-    <li><strong>Catégorie (ASIN)</strong> : One-hot encoding pour capturer l’identité unique du produit.</li>
-    <li><strong>Prix</strong> : Normalisation après imputation pour capturer l’effet du prix.</li>
-    <li><strong>Image</strong> : ResNet18 pré-entraîné génère 512 caractéristiques représentant l’apparence visuelle.</li>
+    <li>Détection automatique de la langue.</li>
+    <li>Conversion en minuscules.</li>
+    <li>Suppression de la ponctuation.</li>
+    <li>Suppression des stopwords selon la langue détectée (anglais par défaut).</li>
 </ul>
+<pre><code>def clean_text(text):
+    if pd.isna(text):
+        return ""
+    try:
+        lang = detect(text)
+    except:
+        lang = "en"
+    stop_words = set(stopwords.words(lang)) if lang in stopwords.fileids() else set(stopwords.words("english"))
+    text = text.lower()
+    text = text.translate(str.maketrans("", "", string.punctuation))
+    tokens = [word for word in text.split() if word not in stop_words]
+    return " ".join(tokens)</code></pre>
 </section>
 
 <section>
-<h2>Combinaison multi-modale</h2>
-<p>Toutes les caractéristiques sont concaténées pour former un vecteur unique par produit :</p>
-<pre><code>X_final = [TF-IDF titre | One-hot ASIN | Prix normalisé | Features image]</code></pre>
-<p>Ce vecteur est ensuite utilisé comme entrée pour le modèle CatBoost qui prédit la note.</p>
+<h2>2️⃣ Analyse de sentiment avec VADER</h2>
+<p>Après nettoyage, une analyse de sentiment est effectuée :</p>
+<ul>
+    <li>VADER (Valence Aware Dictionary for Sentiment Reasoning) est utilisé pour attribuer un score de sentiment à chaque review.</li>
+    <li>Le score "compound" est utilisé pour classer le texte en <strong>positive</strong>, <strong>neutral</strong> ou <strong>negative</strong>.</li>
+    <li>Les colonnes <code>review_title</code> et <code>review_body</code> sont combinées pour former <code>full_review</code> avant analyse.</li>
+</ul>
+<pre><code>def get_sentiment(text):
+    if pd.isna(text) or text.strip() == "":
+        return "neutral"
+    scores = sia.polarity_scores(text)
+    compound = scores["compound"]
+    if compound >= 0.05:
+        return "positive"
+    elif compound <= -0.05:
+        return "negative"
+    else:
+        return "neutral"
+
+df["full_review"] = df["review_title"].astype(str) + " " + df["review_body"].astype(str)
+df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre>
+
+<p>Le résultat est sauvegardé dans le fichier final <code>data_ponera_with_sentiment.csv</code>.</p>
 </section>
 
 <section>
-<h2>Schéma conceptuel</h2>
+<h2>3️⃣ Combinaison multi-modale pour prédiction</h2>
+<p>Après nettoyage et analyse de sentiment, les caractéristiques sont combinées :</p>
+<ul>
+    <li><strong>Texte nettoyé / TF-IDF</strong> (titre, review)</li>
+    <li><strong>ASIN</strong> : One-hot encoding</li>
+    <li><strong>Prix</strong> : Normalisation</li>
+    <li><strong>Image</strong> : ResNet18 features</li>
+    <li><strong>Sentiment</strong> : peut être utilisé comme feature additionnelle</li>
+</ul>
+<pre><code>X_final = [TF-IDF texte nettoyé | One-hot ASIN | Prix normalisé | Features image | Sentiment]</code></pre>
+</section>
+
+<section>
+<h2>4️⃣ Schéma conceptuel</h2>
 <div class="diagram">
-    <div class="box">Titre (TF-IDF)</div>
+    <div class="box">Titre / Review (TF-IDF)</div>
     <div class="arrow">➔</div>
     <div class="box">ASIN (One-hot)</div>
     <div class="arrow">➔</div>
@@ -53,17 +93,20 @@
     <div class="arrow">➔</div>
     <div class="box">Image (ResNet features)</div>
     <div class="arrow">➔</div>
+    <div class="box">Sentiment (VADER)</div>
+    <div class="arrow">➔</div>
     <div class="box">Concaténation → CatBoost</div>
 </div>
 </section>
 
 <section>
-<h2>Pourquoi cette approche est efficace</h2>
+<h2>5️⃣ Avantages</h2>
 <ul>
-    <li>Multi-modale : Utilise toutes les sources d'information pour une meilleure prédiction.</li>
-    <li>TF-IDF + ASIN : Capture le texte descriptif et l'identifiant unique du produit.</li>
-    <li>Prix + Image : Capture les indices numériques et visuels influençant la perception.</li>
-    <li>CatBoost : Modèle performant pour données hétérogènes, capable de combiner numérique et catégoriel.</li>
+    <li>Multi-modale : texte, catégorie, prix, image et sentiment.</li>
+    <li>Nettoyage multilingue standardise le texte.</li>
+    <li>Analyse de sentiment capture l’opinion exprimée dans la review.</li>
+    <li>TF-IDF + ASIN + Prix + Image + Sentiment : combinaison complète pour prédiction précise.</li>
+    <li>CatBoost gère efficacement les données hétérogènes.</li>
 </ul>
 </section>
 
