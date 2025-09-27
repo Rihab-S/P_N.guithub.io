@@ -14,8 +14,15 @@
         .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; margin-bottom: 10px; }
         .arrow { width: 5%; text-align: center; font-size: 24px; line-height: 80px; }
         .images { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
-        .images img { width: 300px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+        .images img { width: 300px; height: 200px; object-fit: cover; cursor: pointer; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
         .caption { text-align: center; font-style: italic; margin-top: 5px; }
+
+        /* Modal style */
+        .modal { display: none; position: fixed; z-index: 1000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+                 background-color: rgba(0,0,0,0.8); }
+        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80%; border-radius: 10px; }
+        .modal-caption { text-align: center; color: #fff; margin-top: 10px; }
+        .close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -34,13 +41,20 @@
 
 <div class="images">
     <div>
-        <img src="raw_text_example.png" alt="Texte brut">
+        <img src="raw_text_example.png" alt="Texte brut" onclick="openModal(this)">
         <div class="caption">Exemple de données brutes avec ponctuation, majuscules et mots inutiles.</div>
     </div>
     <div>
-        <img src="cleaned_text_example.png" alt="Texte nettoyé">
+        <img src="cleaned_text_example.png" alt="Texte nettoyé" onclick="openModal(this)">
         <div class="caption">Texte nettoyé et standardisé pour l’analyse (multilingue).</div>
     </div>
+</div>
+
+<!-- Modal pour affichage des images -->
+<div id="imgModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div class="modal-caption" id="modalCaption"></div>
 </div>
 
 <pre><code>def clean_text(text):
@@ -115,6 +129,20 @@ df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre>
     <li><strong>CatBoost</strong> gère efficacement données hétérogènes pour prédire les <code>ratings</code> Amazon.</li>
 </ul>
 </section>
+
+<script>
+function openModal(imgElement) {
+    var modal = document.getElementById("imgModal");
+    var modalImg = document.getElementById("modalImg");
+    var captionText = document.getElementById("modalCaption");
+    modal.style.display = "block";
+    modalImg.src = imgElement.src;
+    captionText.innerHTML = imgElement.alt;
+}
+function closeModal() {
+    document.getElementById("imgModal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
