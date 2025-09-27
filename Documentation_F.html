@@ -114,8 +114,9 @@
 </div>
 
 <ul>
-    <li><strong>Best max_features</strong> : 300 → RMSE = 0.3484</li>
     <li><strong>Best CatBoost parameters</strong> : {iterations=350, learning_rate=0.3, depth=6} → RMSE = 0.4138</li>
+    <li><strong>Best max_features</strong> : 300 → RMSE = 0.3484</li>
+
 </ul>
 </section>
 
@@ -158,9 +159,9 @@ df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre> -->
     <li><strong>ASIN</strong> → One-hot encoding</li>
     <li><strong>Prix</strong> → Normalisation</li>
     <li><strong>Image</strong> → ResNet18 features</li>
-    <li><strong>Sentiment</strong> → Score VADER (feature additionnelle)</li>
+    <!-- <li><strong>Sentiment</strong> → Score VADER (feature additionnelle)</li> -->
 </ul>
-<pre><code>X_final = [TF-IDF texte nettoyé | One-hot ASIN | Prix normalisé | Features image | Sentiment]</code></pre>
+<pre><code>X_final = [TF-IDF texte nettoyé | One-hot ASIN | Prix normalisé | Features image ]</code></pre>
 </section>
 
 <section>
@@ -170,8 +171,8 @@ df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre> -->
     <div class="arrow">➔</div>
     <div class="box">Nettoyage Texte<br>(suppression stopwords, normalisation)</div>
     <div class="arrow">➔</div>
-    <div class="box">Analyse de Sentiment<br>(VADER)</div>
-    <div class="arrow">➔</div>
+    <!-- <div class="box">Analyse de Sentiment<br>(VADER)</div>
+    <div class="arrow">➔</div> -->
     <div class="box">Extraction de Features<br>TF-IDF | One-hot | Normalisation | ResNet18</div>
     <div class="arrow">➔</div>
     <div class="box">Concaténation</div>
@@ -183,8 +184,8 @@ df["review_sentiment"] = df["full_review"].apply(get_sentiment)</code></pre> -->
 <section>
 <h2>5️⃣ Avantages</h2>
 <ul>
-    <li><strong>Pipeline complet</strong> : nettoyage → sentiment → features → modèle.</li>
-    <li><strong>Multi-modalité</strong> : texte, catégorie, prix, image et sentiment.</li>
+    <li><strong>Pipeline complet</strong> : nettoyage → features → modèle.</li>
+    <li><strong>Multi-modalité</strong> : texte, catégorie, prix, image.</li>
     <li><strong>Standardisation multilingue</strong> : cohérence entre langues.</li>
     <li><strong>CatBoost</strong> gère efficacement données hétérogènes pour prédire les <code>ratings</code> Amazon.</li>
 </ul>
