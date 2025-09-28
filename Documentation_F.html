@@ -56,7 +56,7 @@
 
     /* Images */
     .images { display: flex; justify-content: center; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
-    .images img { width: 300px; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+    .images img { width: 320px; height: 220px; object-fit: cover; border-radius: 8px; cursor: pointer; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
     .caption { text-align: center; font-style: italic; margin-top: 5px; }
 
     @keyframes fadeIn {
@@ -89,16 +89,6 @@
     <li>Suppression de la ponctuation.</li>
     <li>Suppression des stopwords selon la langue détectée.</li>
   </ul>
-  <div class="images">
-    <div>
-      <img src="raw_text_example.png" alt="Texte brut">
-      <div class="caption">Exemple de données brutes.</div>
-    </div>
-    <div>
-      <img src="cleaned_text_example.png" alt="Texte nettoyé">
-      <div class="caption">Exemple de données nettoyées.</div>
-    </div>
-  </div>
 </div>
 
 <div id="step2" class="content-section">
@@ -108,21 +98,25 @@
     <li>Scores positifs, neutres, négatifs.</li>
     <li>Basé sur les scores "compound".</li>
   </ul>
-  <div class="images">
-    <div>
-      <img src="database_example.png" alt="Base de données reviews">
-      <div class="caption">Exemple de base de données enrichie.</div>
-    </div>
-  </div>
 </div>
 
 <div id="step3" class="content-section">
   <h2>3️⃣ Hyperparameter-tuning RandomForest</h2>
-  <p>Recherche des meilleurs hyperparamètres :</p>
+  <p>Recherche des meilleurs hyperparamètres pour RandomForest :</p>
   <ul>
-    <li>Best RMSE : 0.4161</li>
-    <li>Best TF-IDF max_features : 260</li>
+    <li><strong>Best RMSE</strong> : 0.4161 avec paramètres <code>n_estimators=220</code>, <code>max_depth=7</code></li>
+    <li><strong>Best TF-IDF max_features</strong> : 260 avec RMSE=0.415</li>
   </ul>
+  <div class="images">
+    <div>
+      <img src="RF_hyper.png" alt="Courbe de tuning RandomForest">
+      <div class="caption">Variation de la performance selon le nombre d’estimateurs et la profondeur.</div>
+    </div>
+    <div>
+      <img src="RF_hyper_tf_df.png" alt="Optimisation TF-IDF RandomForest">
+      <div class="caption">Optimisation conjointe de TF-IDF max_features et RandomForest.</div>
+    </div>
+  </div>
 </div>
 
 <div id="step4" class="content-section">
@@ -142,11 +136,25 @@
 
 <div id="step6" class="content-section">
   <h2>6️⃣ Modèle CatBoost</h2>
-  <p>Points forts :</p>
+  <p>CatBoost est utilisé pour traiter efficacement les données hétérogènes :</p>
   <ul>
-    <li>Support natif des données catégorielles.</li>
+    <li>Support natif des données catégorielles (ex. <code>ASIN</code>).</li>
     <li>Gestion automatique des valeurs manquantes.</li>
-    <li>Meilleures performances que RandomForest.</li>
+    <li>Robuste aux déséquilibres de classes.</li>
+  </ul>
+  <div class="images">
+    <div>
+      <img src="cat_hyper.png" alt="Entraînement CatBoost">
+      <div class="caption">Exemple d’entraînement CatBoost avec early stopping.</div>
+    </div>
+    <div>
+      <img src="cat_hyper_tf.png" alt="Résultats CatBoost">
+      <div class="caption">Comparaison des performances : CatBoost vs RandomForest.</div>
+    </div>
+  </div>
+  <ul>
+    <li><strong>Best CatBoost parameters</strong> : {iterations=350, learning_rate=0.3, depth=6} → RMSE = 0.4138</li>
+    <li><strong>Best max_features</strong> : 300 → RMSE = 0.3484</li>
   </ul>
 </div>
 
