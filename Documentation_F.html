@@ -20,6 +20,7 @@
       top: 0;
       z-index: 1000;
       gap: 20px;
+      flex-wrap: wrap;
     }
     .step {
       width: 60px;
@@ -59,6 +60,8 @@
     .images img { width: 320px; height: 220px; object-fit: cover; border-radius: 8px; cursor: pointer; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
     .caption { text-align: center; font-style: italic; margin-top: 5px; }
 
+    video { max-width: 100%; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -77,11 +80,21 @@
   <div class="step" onclick="showStep(4)">4</div>
   <div class="step" onclick="showStep(5)">5</div>
   <div class="step" onclick="showStep(6)">6</div>
+  <div class="step" onclick="showStep(7)">7</div>
 </div>
 
 <!-- Sections -->
 <div id="step1" class="content-section active">
-  <h2>1️⃣ Nettoyage des textes</h2>
+  <h2>1️⃣ Data Collection</h2>
+  <p>Étape de collecte des données brutes : textes, images, prix, identifiants produits (ASIN), etc.</p>
+  <video controls>
+    <source src="data_collection.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture vidéo.
+  </video>
+</div>
+
+<div id="step2" class="content-section">
+  <h2>2️⃣ Nettoyage des textes</h2>
   <p>Le texte est nettoyé de manière multilingue :</p>
   <ul>
     <li>Détection automatique de la langue.</li>
@@ -91,8 +104,8 @@
   </ul>
 </div>
 
-<div id="step2" class="content-section">
-  <h2>2️⃣ Analyse de sentiment (optionnel)</h2>
+<div id="step3" class="content-section">
+  <h2>3️⃣ Analyse de sentiment (optionnel)</h2>
   <p>Après nettoyage, on peut effectuer une analyse de sentiment :</p>
   <ul>
     <li>Scores positifs, neutres, négatifs.</li>
@@ -100,8 +113,8 @@
   </ul>
 </div>
 
-<div id="step3" class="content-section">
-  <h2>3️⃣ Hyperparameter-tuning RandomForest</h2>
+<div id="step4" class="content-section">
+  <h2>4️⃣ Hyperparameter-tuning RandomForest</h2>
   <p>Recherche des meilleurs hyperparamètres pour RandomForest :</p>
   <ul>
     <li><strong>Best RMSE</strong> : 0.4161 avec paramètres <code>n_estimators=220</code>, <code>max_depth=7</code></li>
@@ -119,23 +132,8 @@
   </div>
 </div>
 
-<div id="step4" class="content-section">
-  <h2>4️⃣ Schéma global du pipeline</h2>
-  <p>De la base brute jusqu’au modèle supervisé :</p>
-  <img src="pipeline_diagram.png" alt="Schéma pipeline" style="max-width:100%; border-radius:8px;">
-</div>
-
 <div id="step5" class="content-section">
-  <h2>5️⃣ Avantages</h2>
-  <ul>
-    <li>Pipeline complet : nettoyage → features → modèle.</li>
-    <li>Multi-modalité : texte, prix, catégorie, image.</li>
-    <li>Standardisation multilingue.</li>
-  </ul>
-</div>
-
-<div id="step6" class="content-section">
-  <h2>6️⃣ Modèle CatBoost</h2>
+  <h2>5️⃣ Hyperparameter-tuning CatBoost</h2>
   <p>CatBoost est utilisé pour traiter efficacement les données hétérogènes :</p>
   <ul>
     <li>Support natif des données catégorielles (ex. <code>ASIN</code>).</li>
@@ -155,6 +153,21 @@
   <ul>
     <li><strong>Best CatBoost parameters</strong> : {iterations=350, learning_rate=0.3, depth=6} → RMSE = 0.4138</li>
     <li><strong>Best max_features</strong> : 300 → RMSE = 0.3484</li>
+  </ul>
+</div>
+
+<div id="step6" class="content-section">
+  <h2>6️⃣ Schéma global du pipeline</h2>
+  <p>De la base brute jusqu’au modèle supervisé :</p>
+  <img src="pipeline_diagram.png" alt="Schéma pipeline" style="max-width:100%; border-radius:8px;">
+</div>
+
+<div id="step7" class="content-section">
+  <h2>7️⃣ Avantages</h2>
+  <ul>
+    <li>Pipeline complet : collecte → nettoyage → features → modèle.</li>
+    <li>Multi-modalité : texte, prix, catégorie, image.</li>
+    <li>Standardisation multilingue.</li>
   </ul>
 </div>
 
