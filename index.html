@@ -6,6 +6,79 @@
     <title>Project</title>
     <meta name="description" content="Le premier revendeur 100% dédié à la vente des marques sur Amazon et les Marketplaces.">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Conteneur global */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .lang-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Contenu principal */
+        .content-wrapper {
+            flex: 1;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Animation barre */
+        .animation-bar {
+            position: relative;
+            height: 50px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .text-animation-wrapper {
+            display: inline-block;
+            white-space: nowrap;
+            animation: slideText 5s linear infinite;
+        }
+
+        @keyframes slideText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Texte fixe */
+        .fixed-text {
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,10 +87,6 @@
 
         <!-- Sidebar -->
         <nav class="sidebar" aria-label="Navigation principale">
-            <!-- <div class="sidebar-logo">
-                <img src="logo.png" alt="Logo de Ponera">
-            </div> -->
-
             <ul>
                 <li><a id="nav-presentation" href="#">Présentation</a></li>
                 <li><a id="nav-doc" href="#">Documentation</a></li>
@@ -40,30 +109,46 @@
 
             <!-- Barre fixe pour texte animé -->
             <div class="animation-bar">
-                <div class="text-animation">
-                    <span id="animated-text"></span>
+                <div class="text-animation-wrapper">
+                    <span id="animated-text">Bienvenue sur le projet Ponera – Suivi des produits et prédictions avancées</span>
                 </div>
             </div>
 
             <!-- Contenu texte principal -->
             <main class="main-content">
+                <!-- Texte fixe en dessous -->
                 <section class="intro">
-                    <p id="bio-text"></p>
+                    <p class="fixed-text" id="bio-text">Ponera est le premier revendeur 100% dédié à la vente des marques sur Amazon et autres marketplaces.</p>
                 </section>
 
                 <section>
-                    <h2 id="welcome-title"></h2>
-                    <p id="project-text"></p>
+                    <h2 class="fixed-text" id="welcome-title">Bienvenue</h2>
+                    <p class="fixed-text" id="project-text">Ce projet permet de suivre les produits, analyser leurs performances et prédire le risque de retour avant la mise en vente.</p>
                 </section>
             </main>
 
             <!-- Footer -->
             <footer>
-                <p id="footer-text"></p>
+                <p class="fixed-text" id="footer-text">© 2025 Ponera - Tous droits réservés</p>
             </footer>
         </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script>
+        // Exemple simple d'animation texte dynamique (optionnel)
+        const messages = [
+            "Bienvenue sur le projet Ponera – Suivi des produits et prédictions avancées",
+            "Anticipez le risque de retour avant la mise en vente",
+            "Optimisez vos ventes grâce à l'IA"
+        ];
+
+        let idx = 0;
+        const animatedText = document.getElementById("animated-text");
+
+        setInterval(() => {
+            animatedText.textContent = messages[idx];
+            idx = (idx + 1) % messages.length;
+        }, 5000);
+    </script>
 </body>
 </html>
