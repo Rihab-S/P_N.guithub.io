@@ -20,7 +20,13 @@ html, body {
     background-repeat: no-repeat; /* pas de répétition */
     color: white; /* texte en blanc */
 }
-
+.page-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* couvre toute la div */
+    background-color: rgba(0, 0, 0, 0.5); /* noir avec 50% d’opacité */
+    z-index: -1; /* derrière le contenu mais au-dessus du background */
+}
 /* Sidebar */
 .sidebar {
     width: 220px;
