@@ -57,6 +57,7 @@ function changeLanguage(lang) {
     document.getElementById("nav-test").setAttribute("href", translations[lang].links.test);
     document.getElementById("nav-pre").setAttribute("href", translations[lang].links.perspectives);
 
+
     document.getElementById("welcome-title").textContent = translations[lang].welcome;
     document.getElementById("project-text").textContent = translations[lang].project;
 
