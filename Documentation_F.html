@@ -7,26 +7,8 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
     h1 { text-align: center; padding: 20px; color: #333; }
-    
+
     /* Barre de bulles */
-    .home-step {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #2196F3; /* Bleu pour différencier */
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    }
-
-    .home-step:hover {
-        background: #1e88e5;
-    }
-
     .steps-bar {
       display: flex;
       justify-content: center;
@@ -40,6 +22,7 @@
       gap: 20px;
       flex-wrap: wrap;
     }
+
     .step {
       width: 60px;
       height: 60px;
@@ -52,12 +35,36 @@
       cursor: pointer;
       transition: all 0.3s;
     }
+
     .step.active {
       background: #4CAF50;
       color: #fff;
       transform: scale(1.1);
     }
-    .step:hover { background: #66bb6a; color: #fff; }
+
+    .step:hover { 
+      background: #66bb6a; 
+      color: #fff; 
+    }
+
+    /* Bulle Home */
+    .home-step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #2196F3; /* Bleu pour différencier */
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .home-step:hover {
+        background: #1e88e5;
+    }
 
     /* Sections */
     .content-section {
@@ -99,11 +106,12 @@
   <div class="step" onclick="showStep(5)">5</div>
   <div class="step" onclick="showStep(6)">6</div>
 
+  <!-- Home bubble intégrée -->
+  <a href="index.html" class="step home-step" title="Home">
+      <img src="home.png" alt="Home" style="width:24px; height:24px;">
+  </a>
 </div>
-  <!-- Home bubble -->
-<a href="index.html" class="step home-step" title="Home">
-    <img src="home.png" alt="Home" style="width:24px; height:24px;">
-</a>
+
 <!-- Sections -->
 <div id="step1" class="content-section active">
 
