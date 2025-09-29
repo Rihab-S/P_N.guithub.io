@@ -17,7 +17,7 @@ const translations = {
             "Ne laissez plus l’incertitude freiner votre succès !"
         ],
         welcome: "Bienvenue",
-        project: "Découvrez nos projets, tests et documentations sur l’intelligence artificielle et les systèmes intelligents."
+        project: "Découvrez notre projet, test et documentation."
     },
     en: {
         bio: "With our innovative service, get your product evaluated even before it goes on sale. Anticipate your customers’ needs, adjust your offer, and maximize your sales with confidence. Join us today and turn every launch into a successful experience!",
@@ -37,7 +37,7 @@ const translations = {
             "Don’t let uncertainty slow down your success!"
         ],
         welcome: "Welcome",
-        project: "Discover our projects, tests, and documentation on artificial intelligence and intelligent systems."
+        project: "Discover our project, tests, and documentation."
     }
 };
 
