@@ -223,28 +223,30 @@
     <li>Une <strong>estimation du risque de retour</strong> (<code>return_risk</code>, valeur binaire où 1 = risque élevé).</li>
   </ul>
 
-  <h3>🗂️ Flowchart</h3>
-  <pre>
-flowchart TD
-    A[Produit brut] --> B[Titre du produit]
-    A --> C[Prix de vente]
-    A --> D[ASIN]
-    A --> E[Image principale]
+  <div class="flowchart-container">
+    <pre class="mermaid">
+  flowchart TD
+      A[Produit brut] --> B[Titre du produit]
+      A --> C[Prix de vente]
+      A --> D[ASIN]
+      A --> E[Image principale]
+  
+      B --> B1[TF-IDF Vectorizer]
+      C --> C1[Normalisation + Imputation]
+      D --> D1[Encodage One-Hot]
+      E --> E1[Extraction visuelle - ResNet18]
+  
+      B1 --> F[Fusion des caractéristiques]
+      C1 --> F
+      D1 --> F
+      E1 --> F
+  
+      F --> G[Modèle prédictif]
+      G --> H[Prédiction note produit]
+      H --> I[Estimation risque de retour]
+    </pre>
+  </div>
 
-    B --> B1[TF-IDF Vectorizer]
-    C --> C1[Normalisation + Imputation]
-    D --> D1[Encodage One-Hot]
-    E --> E1[Extraction de caractéristiques visuelles - ResNet18]
-
-    B1 --> F[Fusion des caractéristiques]
-    C1 --> F
-    D1 --> F
-    E1 --> F
-
-    F --> G[Modèle prédictif]
-    G --> H[Prédiction de la note du produit]
-    H --> I[Estimation du risque de retour]
-  </pre>
 </div>
 
 
