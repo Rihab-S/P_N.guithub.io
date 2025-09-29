@@ -1,160 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation: Multi-modal Method, Text Cleaning and Sentiment Analysis</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f5f5f5; }
-        h1, h2 { color: #333; }
-        code { background-color: #eaeaea; padding: 2px 5px; border-radius: 3px; }
-        pre { background-color: #eaeaea; padding: 10px; border-radius: 5px; overflow-x: auto; }
-        section { background-color: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        .diagram { display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; }
-        .box { background-color: #eaeaea; padding: 15px; border-radius: 8px; text-align: center; width: 20%; margin-bottom: 10px; }
-        .arrow { width: 5%; text-align: center; font-size: 24px; line-height: 80px; }
-        .images { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
-        .images img { width: 300px; height: 200px; object-fit: cover; cursor: pointer; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
-        .caption { text-align: center; font-style: italic; margin-top: 5px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Model Technical Documentation</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    h1 { text-align: center; padding: 20px; color: #333; }
+    
+    /* Steps Bar */
+    .steps-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .step {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .step.active {
+      background: #4CAF50;
+      color: #fff;
+      transform: scale(1.1);
+    }
+    .step:hover { background: #66bb6a; color: #fff; }
 
-        /* Modal style */
-        .modal { display: none; position: fixed; z-index: 1000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
-                 background-color: rgba(0,0,0,0.8); }
-        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80%; border-radius: 10px; }
-        .modal-caption { text-align: center; color: #fff; margin-top: 10px; }
-        .close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
-    </style>
+    /* Sections */
+    .content-section {
+      display: none;
+      background: #fff;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 1000px;
+      animation: fadeIn 0.5s ease;
+    }
+    .content-section.active { display: block; }
+
+    /* Images */
+    .images { display: flex; justify-content: center; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+    .images img { width: 320px; height: 220px; object-fit: cover; border-radius: 8px; cursor: pointer; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+    .caption { text-align: center; font-style: italic; margin-top: 5px; }
+
+    video { max-width: 100%; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
-<h1>Complete Documentation: Multi-modal, Text Cleaning and Sentiment Analysis</h1>
+<h1>Learning Model Technical Documentation</h1>
 
-<section>
-<h2>1️⃣ Text Cleaning</h2>
-<p>The text is cleaned in a multilingual way:</p>
-<ul>
-    <li>Automatic language detection.</li>
-    <li>Conversion to lowercase.</li>
-    <li>Removal of punctuation.</li>
-    <li>Removal of stopwords according to detected language (English as default).</li>
-</ul>
-
-<div class="images">
-    <div>
-        <img src="raw_text_example.png" alt="Raw text" onclick="openModal(this)">
-        <div class="caption">Example of raw data with punctuation, uppercase, and useless words.</div>
-    </div>
-    <div>
-        <img src="cleaned_text_example.png" alt="Cleaned text" onclick="openModal(this)">
-        <div class="caption">Example of cleaned data.</div>
-    </div>
+<!-- Steps -->
+<div class="steps-bar">
+  <div class="step active" onclick="showStep(1)">1</div>
+  <div class="step" onclick="showStep(2)">2</div>
+  <div class="step" onclick="showStep(3)">3</div>
+  <div class="step" onclick="showStep(4)">4</div>
+  <div class="step" onclick="showStep(5)">5</div>
+  <div class="step" onclick="showStep(6)">6</div>
 </div>
 
-<!-- Modal for images -->
-<div id="imgModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImg">
-    <div class="modal-caption" id="modalCaption"></div>
-</div>
-</section>
+<!-- Sections -->
+<div id="step1" class="content-section active">
+  <h2>1️⃣ Data Collection</h2>
+  <p>
+    The <strong>raw data collection</strong> step involves extracting and centralizing all necessary information from the product pages of the <em>Ponera</em> store on Amazon.
+  </p>
+  
+  <h3>🎯 Objective</h3>
+  <p>
+    Build a reliable, standardized, and usable database that will serve as the foundation for AI model training and optimization.
+  </p>
 
-<section>
-<h2>3️⃣ Hyperparameter-tuning RandomForest</h2>
-<p>Search for the best <strong>RandomForest</strong> hyperparameters with cross-validation:</p>
+  <h3>⚙️ Tool Used</h3>
+  <p>
+    The <strong>IMPORTFROMWEB</strong> extension for Google Sheets automates product data collection. This automation provides:
+  </p>
+  <ul>
+    <li><strong>Time savings</strong> in data retrieval,</li>
+    <li><strong>Reduced human errors</strong> from manual entry,</li>
+    <li><strong>Dynamic updates</strong> of collected information.</li>
+  </ul>
 
-<div class="images">
-    <div>
-        <img src="RF_hyper.png" alt="RandomForest tuning curve" onclick="openModal(this)">
-        <div class="caption">Performance variation depending on the number of estimators and depth.</div>
-    </div>
-    <div>
-        <img src="RF_hyper_tf_df.png" alt="TF-IDF RandomForest optimization" onclick="openModal(this)">
-        <div class="caption">Joint optimization of TF-IDF max_features and RandomForest.</div>
-    </div>
-</div>
+  <h3>📦 Collected Data</h3>
+  <p>Extracted features include:</p>
+  <ul>
+    <li><strong>ASIN</strong>: unique product identifier on Amazon,</li>
+    <li><strong>Product title</strong>,</li>
+    <li><strong>Price</strong>,</li>
+    <li><strong>Average customer rating</strong>,</li>
+    <li><strong>Total number of reviews</strong>,</li>
+    <li><strong>Customer review content</strong>.</li>
+  </ul>
 
-<ul>
-    <li><strong>Best RMSE</strong>: 0.4161 with parameters (n_estimators=220, max_depth=7)</li>
-    <li><strong>Best TF-IDF max_features</strong>: 260 with RMSE=0.415</li>
-</ul>
-</section>
+  <h3>✅ Expected Result</h3>
+  <p>
+    A well-organized Google Sheets database containing all necessary information in a uniform format, ready for analysis and AI applications.
+  </p>
 
-<section>
-<h2>6️⃣ CatBoost Model for Multi-modal Data</h2>
-<p>In addition to RandomForest, <strong>CatBoost</strong> is used to efficiently handle heterogeneous data:</p>
-<ul>
-    <li>Native support of <strong>categorical data</strong> (e.g. <code>ASIN</code>) without the need for One-hot encoding.</li>
-    <li>Automatic handling of <strong>missing values</strong>.</li>
-    <li>Robust to <strong>class imbalance</strong> and noisy datasets.</li>
-    <li>Can be combined with extracted <strong>image features</strong> (ResNet18).</li>
-</ul>
-
-<div class="images">
-    <div>
-        <img src="cat_hyper.png" alt="CatBoost training" onclick="openModal(this)">
-        <div class="caption">Example of CatBoost training with early stopping.</div>
-    </div>
-    <div>
-        <img src="cat_hyper_tf.png" alt="CatBoost results" onclick="openModal(this)">
-        <div class="caption">Performance comparison: CatBoost vs RandomForest.</div>
-    </div>
+  <video controls>
+    <source src="data_collection.mp4" type="video/mp4">
+    Your browser does not support video playback.
+  </video>
 </div>
 
-<ul>
-    <li><strong>Best CatBoost parameters</strong>: {iterations=350, learning_rate=0.3, depth=6} → RMSE = 0.4138</li>
-    <li><strong>Best max_features</strong>: 300 → RMSE = 0.3484</li>
-</ul>
-</section>
-
-<section>
-<h2>3️⃣ Multi-modal Combination for Prediction</h2>
-<p>The features used in the supervised model:</p>
-<ul>
-    <li><strong>Cleaned text → TF-IDF</strong> (title, review)</li>
-    <li><strong>ASIN</strong> → One-hot encoding</li>
-    <li><strong>Price</strong> → Normalization</li>
-    <li><strong>Image</strong> → ResNet18 features</li>
-</ul>
-<pre><code>X_final = [TF-IDF cleaned text | One-hot ASIN | Normalized Price | Image Features]</code></pre>
-</section>
-
-<section>
-<h2>4️⃣ Global Pipeline Scheme</h2>
-<div class="diagram">
-    <div class="box">Raw Database<br>(Text, Price, ASIN, Image)</div>
-    <div class="arrow">➔</div>
-    <div class="box">Text Cleaning<br>(stopword removal, normalization)</div>
-    <div class="arrow">➔</div>
-    <div class="box">Feature Extraction<br>TF-IDF | One-hot | Normalization | ResNet18</div>
-    <div class="arrow">➔</div>
-    <div class="box">Concatenation</div>
-    <div class="arrow">➔</div>
-    <div class="box">Supervised Model<br>(CatBoost)</div>
+<div id="step2" class="content-section">
+  <h2>2️⃣ Text Cleaning</h2>
+    
+  <p>
+    This step involves <strong>preparing and standardizing the textual database</strong> to ensure the quality of information used in analysis and AI model training.  
+    Raw text often contains noise (punctuation, uppercase letters, unimportant words, etc.), which can skew results.  
+    Cleaning is therefore an <strong>essential</strong> step to obtain a more coherent, homogeneous, and usable dataset.
+  </p>
+    
+  <h3>🎯 Objective</h3>
+  <p>
+    Improve text data quality by removing unnecessary or redundant elements while preserving relevant information for analysis.
+  </p>
+  
+  <h3>⚙️ Cleaning Steps</h3>
+  <ul>
+    <li><strong>Automatic language detection</strong>: identify the language of each review to apply appropriate cleaning.</li>
+    <li><strong>Lowercase conversion</strong>: standardize text to avoid duplicates due to uppercase/lowercase.</li>
+    <li><strong>Punctuation removal</strong>: eliminate special characters or symbols that add no semantic value.</li>
+    <li><strong>Stopwords removal</strong>: remove filler words (e.g., "the", "and", "of") according to detected language.</li>
+  </ul>
+  
+  <h3>✅ Expected Result</h3>
+  <p>
+    After this step, the textual database is <strong>clean, normalized, and ready for use</strong>.  
+    This preprocessing significantly improves natural language processing (NLP) algorithm performance and reduces biases from raw data noise.
+  </p>
+  
+  <div class="example-block">
+    <img src="raw_text_example.png" alt="Example of raw uncleaned text">
+    <div class="caption">🔴 Example of raw data before cleaning.</div>
+  </div>
+  
+  <div class="example-block">
+    <img src="cleaned_text_example.png" alt="Example of cleaned text">
+    <div class="caption">🟢 Example of data after cleaning.</div>
+  </div>
 </div>
-</section>
 
-<section>
-<h2>5️⃣ Advantages</h2>
-<ul>
-    <li><strong>Complete pipeline</strong>: cleaning → features → model.</li>
-    <li><strong>Multi-modality</strong>: text, category, price, image.</li>
-    <li><strong>Multilingual standardization</strong>: consistency across languages.</li>
-    <li><strong>CatBoost</strong> efficiently handles heterogeneous data to predict Amazon <code>ratings</code>.</li>
-</ul>
-</section>
+<div id="step3" class="content-section">
+  <h2>3️⃣ Product Rating Prediction</h2>
+
+  <p>
+    This step aims to <strong>predict a product's expected rating</strong> (out of 5 stars) from multiple data sources.  
+    Combining textual, numerical, categorical, and visual data allows a reliable evaluation of perceived product quality and estimates the <strong>return risk</strong>.
+  </p>
+
+  <h3>🎯 Objective</h3>
+  <p>
+    Automatically determine the probable rating of a product and identify items likely to receive poor ratings (≤ 2 stars).
+  </p>
+
+  <h3>📦 Features Used</h3>
+  <ul>
+    <li><strong>Product title (text)</strong> → vectorized with <em>TF-IDF</em> to extract relevant keywords.</li>
+    <li><strong>Sale price (numerical)</strong> → normalized and imputed if missing.</li>
+    <li><strong>ASIN (categorical)</strong> → encoded as binary vectors (One-Hot Encoding).</li>
+    <li><strong>Main image (visual)</strong> → converted to feature vector via a pretrained neural network (<em>truncated ResNet18</em>).</li>
+  </ul>
+
+  <h3>⚙️ Methodology</h3>
+  <p>
+    Each type of data is processed with an appropriate method:
+  </p>
+  <ul>
+    <li><em>TF-IDF</em> → weights words by their relative importance in the corpus.</li>
+    <li><em>Normalization</em> → scales numerical values (price) to a comparable range.</li>
+    <li><em>One-Hot Encoding</em> → transforms product identifiers into usable variables.</li>
+    <li><em>Image feature extraction</em> → captures visual characteristics (colors, textures, shapes) into a 512-dimensional vector.</li>
+  </ul>
+
+  <h3>🔗 Combination</h3>
+  <p>
+    Representations from different sources are <strong>merged into a single vector</strong> used as input to the predictive model.  
+    This multi-modal approach improves accuracy by simultaneously using:
+  </p>
+  <ul>
+    <li>text (product description),</li>
+    <li>numerical data (price),</li>
+    <li>identifiers (ASIN),</li>
+    <li>visual signals (image).</li>
+  </ul>
+
+  <h3>✅ Expected Result</h3>
+  <p>
+    The system generates:
+  </p>
+  <ul>
+    <li>A <strong>predicted rating</strong> (<code>rating_pred</code>, between 1 and 5).</li>
+    <li>An <strong>estimated return risk</strong>.</li>
+  </ul>
+
+  <div style="text-align:center; margin:20px 0;">
+    <img src="flowshart.png" alt="Flowchart" style="max-width:800px; width:100%; height:auto;">
+  </div>
+</div>
+
+
+<div id="step4" class="content-section">
+  <h2>4️⃣ Model Hyperparameter Optimization</h2>
+
+  <p>
+    This step involves <strong>optimizing the performance of a RandomForest ensemble model</strong> applied to product rating prediction.  
+    RandomForest combines multiple decision trees, reducing variance and improving prediction robustness.
+  </p>
+
+  <h3>🎯 Methodology</h3>
+  <p>
+    The prepared data (TF-IDF text, normalized prices, encoded product IDs, and image vectors) are <strong>concatenated into a single vector</strong> as input to the model.  
+    Hyperparameter search is then performed to find the configuration that minimizes prediction error.
+  </p>
+  <ul>
+    <li><strong>n_estimators</strong>: number of trees in the forest.</li>
+    <li><strong>max_depth</strong>: maximum depth of each tree.</li>
+    <li><strong>max_features (TF-IDF)</strong>: maximum number of keywords considered in text vectorization.</li>
+  </ul>
+  <p>
+    For each parameter combination, the <strong>Root Mean Squared Error (RMSE)</strong> is calculated on the test set to determine optimal settings.
+  </p>
+
+  <h3>📊 Results</h3>
+  <ul>
+    <li><strong>Best RMSE:</strong> 0.4161 with <code>n_estimators=220</code> and <code>max_depth=7</code></li>
+    <li><strong>Best TF-IDF feature count:</strong> 260, resulting in RMSE=0.415</li>
+  </ul>
+
+  <div class="images-container" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:20px 0;">
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="RF_hyper.png" alt="RandomForest tuning curve" style="width:100%; height:auto; object-fit:contain;">
+      <div class="caption">Performance variation according to the number of estimators and depth.</div>
+    </div>
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="RF_hyper_tf_df.png" alt="RandomForest TF-IDF optimization" style="width:100%; height:auto; object-fit:contain;">
+      <div class="caption">Joint optimization of TF-IDF max_features and RandomForest parameters.</div>
+    </div>
+  </div>
+
+  <h3>✅ Conclusion</h3>
+  <p>
+    Using RandomForest on concatenated multi-modal data (text, numerical, categorical, and visual) produces reliable product rating predictions.  
+    Hyperparameter search showed that <code>n_estimators=220</code>, <code>max_depth=7</code>, and <code>max_features=260</code> for TF-IDF offer a good balance between accuracy and complexity.  
+    This ensures the model effectively uses all extracted features while remaining stable and generalizable on new data.
+  </p>
+</div>
+
+<div id="step5" class="content-section">
+  <h2>5️⃣ CatBoost Hyperparameter Optimization</h2>
+
+  <p>
+    This step involves <strong>optimizing the performance of a CatBoost model</strong> applied to product rating prediction.  
+    CatBoost is a gradient boosting tree model, designed to handle categorical variables and heterogeneous data while being resistant to overfitting.
+  </p>
+
+  <h3>🎯 Methodology</h3>
+  <p>
+    The prepared data (TF-IDF text, normalized prices, encoded product IDs, and image vectors) are <strong>concatenated into a single vector</strong> as model input.  
+    A hyperparameter search is then performed to find the configuration minimizing prediction error.
+  </p>
+  <ul>
+    <li><strong>iterations</strong>: number of boosting iterations (trees).</li>
+    <li><strong>depth</strong>: maximum depth of each tree.</li>
+    <li><strong>learning_rate</strong>: learning rate.</li>
+    <li><strong>max_features (TF-IDF)</strong>: maximum number of keywords considered in text vectorization.</li>
+  </ul>
+  <p>
+    For each combination, the <strong>Root Mean Squared Error (RMSE)</strong> is computed on the test set to identify optimal settings.
+  </p>
+
+  <h3>📊 Results</h3>
+  <ul>
+    <li><strong>Best RMSE:</strong> 0.4138 with <code>iterations=350</code>, <code>learning_rate=0.3</code>, and <code>depth=6</code></li>
+    <li><strong>Best TF-IDF feature count:</strong> 300 → RMSE=0.3484</li>
+  </ul>
+
+  <div class="images-container" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:20px 0;">
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="cat_hyper.png" alt="CatBoost tuning curve" style="width:100%; height:auto; object-fit:contain;">
+      <div class="caption">Example of CatBoost training with early stopping.</div>
+    </div>
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="cat_hyper_tf.png" alt="CatBoost TF-IDF optimization" style="width:100%; height:auto; object-fit:contain;">
+      <div class="caption">Joint optimization of CatBoost parameters and TF-IDF max_features.</div>
+    </div>
+  </div>
+
+  <h3>✅ Conclusion</h3>
+  <p>
+    Using CatBoost on concatenated multi-modal data (text, numerical, categorical, and visual) yields accurate product rating predictions.  
+    Hyperparameter search showed that <code>iterations=350</code>, <code>depth=6</code>, <code>learning_rate=0.3</code>, and <code>max_features=300</code> for TF-IDF provide an excellent balance between accuracy and complexity.  
+    This configuration ensures the model effectively leverages all extracted features while remaining stable and generalizable to new data.
+  </p>
+</div>
+
+<div id="step6" class="content-section">
+  <h2>📘 Learning Model</h2>
+
+  <h3>1️⃣ Models Used</h3>
+  <ul>
+    <li><strong>RandomForest:</strong> decision tree forest model, robust to noisy and multi-modal data. Model saved as <code>.pkl</code>.</li>
+    <li><strong>CatBoost:</strong> gradient boosting tree model, effective on categorical variables and heterogeneous datasets. Model saved as <code>.cbm</code>.</li>
+  </ul>
+
+  <h3>2️⃣ Optimal Parameters</h3>
+  <p>
+    Each model is trained with the <strong>best hyperparameters</strong> identified during tuning:
+  </p>
+  <ul>
+    <li>RandomForest: <code>n_estimators=220</code>, <code>max_depth=7</code>, <code>max_features=260</code> for TF-IDF.</li>
+    <li>CatBoost: <code>iterations=350</code>, <code>depth=6</code>, <code>learning_rate=0.3</code>, <code>max_features=300</code> for TF-IDF.</li>
+  </ul>
+
+  <h3>3️⃣ Input Data</h3>
+  <p>
+    The model receives concatenated vectors from different sources:
+  </p>
+  <ul>
+    <li>Product text vectorized via TF-IDF.</li>
+    <li>Normalized price and numerical features.</li>
+    <li>Encoded product identifiers (categorical).</li>
+    <li>Image vectors extracted via CNN or vision transformer networks.</li>
+  </ul>
+
+  <h3>4️⃣ Prediction Mechanism</h3>
+  <p>
+    Loaded models generate predictions as <strong>probabilities based on product ratings</strong>, enabling:
+  </p>
+  <ul>
+    <li>Accurate estimation of expected rating.</li>
+    <li>Scores or recommendations for each product.</li>
+  </ul>
+
+  <h3>5️⃣ Online Deployment</h3>
+  <p>
+    For integration into the web application, we use <strong>Hugging Face as a Python server</strong>. This allows:
+  </p>
+  <ul>
+    <li>Loading pre-trained models into memory.</li>
+    <li>Providing real-time predictions for user queries.</li>
+    <li>Ensuring scalability and robustness of the online pipeline.</li>
+  </ul>
+</div>
+    
+
 
 <script>
-function openModal(imgElement) {
-    var modal = document.getElementById("imgModal");
-    var modalImg = document.getElementById("modalImg");
-    var captionText = document.getElementById("modalCaption");
-    modal.style.display = "block";
-    modalImg.src = imgElement.src;
-    captionText.innerHTML = imgElement.alt;
-}
-function closeModal() {
-    document.getElementById("imgModal").style.display = "none";
-}
+  function showStep(step) {
+    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('.step').forEach(b => b.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+    document.querySelector('.steps-bar .step:nth-child(' + step + ')').classList.add('active');
+  }
 </script>
 
 </body>
