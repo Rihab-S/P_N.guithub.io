@@ -35,30 +35,33 @@
             </div>
         </nav>
 
-        <!-- Barre fixe pour texte animé -->
-        <div class="animation-bar">
-            <div class="text-animation-wrapper">
-                <span id="animated-text"></span>
+        <!-- Contenu principal -->
+        <div class="content-wrapper"> 
+
+            <!-- Barre fixe pour texte animé -->
+            <div class="animation-bar">
+                <div class="text-animation">
+                    <span id="animated-text"></span>
+                </div>
             </div>
+
+            <!-- Contenu texte principal -->
+            <main class="main-content">
+                <section class="intro">
+                    <p id="bio-text"></p>
+                </section>
+
+                <section>
+                    <h2 id="welcome-title"></h2>
+                    <p id="project-text"></p>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer>
+                <p id="footer-text"></p>
+            </footer>
         </div>
-
-        <!-- Contenu texte principal -->
-        <main class="main-content">
-            <!-- Texte fixe en dessous -->
-            <section class="intro">
-                <p class="fixed-text" id="bio-text"></p>
-            </section>
-
-            <section>
-                <h2 class="fixed-text" id="welcome-title"></h2>
-                <p class="fixed-text" id="project-text"></p>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer>
-            <p id="footer-text"></p>
-        </footer>
     </div>
 
     <script src="script.js" defer></script>
