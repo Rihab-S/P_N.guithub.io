@@ -332,11 +332,55 @@
 </div>
 
 
-<div id="step6" class="content-section">
-  <h2>6️⃣ Schéma global du pipeline</h2>
-  <p>De la base brute jusqu’au modèle supervisé :</p>
-  <img src="pipeline_diagram.png" alt="Schéma pipeline" style="max-width:100%; border-radius:8px;">
+<div id="model-doc" class="content-section">
+  <h2>📘 Documentation technique du modèle d’apprentissage</h2>
+
+  <h3>1️⃣ Modèles utilisés</h3>
+  <ul>
+    <li><strong>RandomForest :</strong> modèle de forêt d’arbres de décision, robuste aux données bruitées et multi-modales. Modèle sauvegardé en <code>.pkl</code>.</li>
+    <li><strong>CatBoost :</strong> modèle de gradient boosting sur arbres, performant sur les variables catégorielles et les jeux de données hétérogènes. Modèle sauvegardé en <code>.cbm</code>.</li>
+  </ul>
+
+  <h3>2️⃣ Paramètres optimaux</h3>
+  <p>
+    Chaque modèle est entraîné avec les **meilleurs hyperparamètres** identifiés lors de la phase de tuning :
+  </p>
+  <ul>
+    <li>RandomForest : <code>n_estimators=220</code>, <code>max_depth=7</code>, <code>max_features=260</code> pour TF-IDF.</li>
+    <li>CatBoost : <code>iterations=350</code>, <code>depth=6</code>, <code>learning_rate=0.3</code>, <code>max_features=300</code> pour TF-IDF.</li>
+  </ul>
+
+  <h3>3️⃣ Données d’entrée</h3>
+  <p>
+    Le modèle reçoit des vecteurs concaténés issus de différentes sources :
+  </p>
+  <ul>
+    <li>Texte produit vectorisé via TF-IDF.</li>
+    <li>Prix et caractéristiques numériques normalisés.</li>
+    <li>Identifiants produits encodés (catégoriels).</li>
+    <li>Vecteurs d’images extraits via un réseau de type CNN ou vision transformer.</li>
+  </ul>
+
+  <h3>4️⃣ Mécanisme de prédiction</h3>
+  <p>
+    Les modèles chargés génèrent des prédictions sous forme de **probabilités basées sur les notes produits**, permettant ainsi de produire :
+  </p>
+  <ul>
+    <li>Une estimation précise de la note attendue.</li>
+    <li>Des scores ou recommandations pour chaque produit.</li>
+  </ul>
+
+  <h3>5️⃣ Déploiement en ligne</h3>
+  <p>
+    Pour l’intégration dans l’application web, nous utilisons **Hugging Face comme serveur Python**. Cela permet de :
+  </p>
+  <ul>
+    <li>Charger les modèles pré-entraînés en mémoire.</li>
+    <li>Fournir des prédictions en temps réel pour des requêtes utilisateur.</li>
+    <li>Assurer la scalabilité et la robustesse du pipeline en ligne.</li>
+  </ul>
 </div>
+
 
 <div id="step7" class="content-section">
   <h2>7️⃣ Avantages</h2>
