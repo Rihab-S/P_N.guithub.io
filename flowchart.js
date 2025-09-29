@@ -1,11 +1,8 @@
-<!-- Ajouter viz.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
+// flowchart.js
 
-<div id="flowchart" style="text-align:center;"></div>
-
-<script>
-  const dot = `
+// Assurez-vous que viz.js est déjà chargé dans la page avant ce script
+window.addEventListener('DOMContentLoaded', (event) => {
+    const dot = `
 digraph G {
     rankdir=TB;
     node [shape=box, style=rounded, color=darkblue, fontname="Arial"];
@@ -28,6 +25,9 @@ digraph G {
     "Modèle prédictif" -> "Prédiction note produit";
     "Prédiction note produit" -> "Estimation risque de retour";
 }
-  `;
-  document.getElementById("flowchart").innerHTML = Viz(dot, { format: "svg" });
-</script>
+    `;
+    const container = document.getElementById("flowchart");
+    if(container) {
+        container.innerHTML = Viz(dot, { format: "svg" });
+    }
+});
