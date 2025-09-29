@@ -169,13 +169,84 @@
 
 
 <div id="step3" class="content-section">
-  <h2>3️⃣ Analyse de sentiment (optionnel)</h2>
-  <p>Après nettoyage, on peut effectuer une analyse de sentiment :</p>
+  <h2>3️⃣ Prédiction de la note produit</h2>
+
+  <p>
+    Cette étape vise à <strong>prédire la note attendue d’un produit</strong> (sur 5 étoiles) à partir de plusieurs sources d’information. 
+    La combinaison de données textuelles, numériques, catégorielles et visuelles permet d’obtenir une évaluation fiable de la qualité perçue du produit, 
+    ainsi qu’une estimation du <strong>risque de retour</strong>.
+  </p>
+
+  <h3>🎯 Objectif</h3>
+  <p>
+    Déterminer automatiquement la note probable d’un produit et identifier les articles susceptibles d’obtenir une mauvaise évaluation (≤ 2 étoiles).
+  </p>
+
+  <h3>📦 Features utilisées</h3>
   <ul>
-    <li>Scores positifs, neutres, négatifs.</li>
-    <li>Basé sur les scores "compound".</li>
+    <li><strong>Titre du produit (texte)</strong> → vectorisé avec <em>TF-IDF</em> pour extraire les mots-clés pertinents.</li>
+    <li><strong>Prix de vente (numérique)</strong> → normalisé et complété en cas de valeurs manquantes.</li>
+    <li><strong>ASIN (catégoriel)</strong> → encodé en vecteurs binaires (One-Hot Encoding).</li>
+    <li><strong>Image principale (visuel)</strong> → convertie en vecteur de caractéristiques via un réseau de neurones pré-entraîné (<em>ResNet18 tronqué</em>).</li>
   </ul>
+
+  <h3>⚙️ Méthodologie</h3>
+  <p>
+    Chaque type de donnée est traité avec une méthode adaptée :
+  </p>
+  <ul>
+    <li><em>TF-IDF</em> → pondère les mots selon leur importance relative dans le corpus.</li>
+    <li><em>Normalisation</em> → met les valeurs numériques (prix) sur une échelle comparable.</li>
+    <li><em>One-Hot Encoding</em> → transforme les identifiants produits en variables exploitables.</li>
+    <li><em>Extraction d’images</em> → capture les caractéristiques visuelles (couleurs, textures, formes) dans un vecteur de 512 dimensions.</li>
+  </ul>
+
+  <h3>🔗 Combinaison</h3>
+  <p>
+    Les représentations issues des différentes sources sont <strong>fusionnées en un vecteur unique</strong>, 
+    utilisé comme entrée pour le modèle prédictif.  
+    Cette approche multi-modale améliore la précision en exploitant simultanément :
+  </p>
+  <ul>
+    <li>le texte (description du produit),</li>
+    <li>les données chiffrées (prix),</li>
+    <li>les identifiants (ASIN),</li>
+    <li>les signaux visuels (image).</li>
+  </ul>
+
+  <h3>✅ Résultat attendu</h3>
+  <p>
+    Le système génère :
+  </p>
+  <ul>
+    <li>Une <strong>note prédite</strong> (<code>rating_pred</code>, entre 1 et 5).</li>
+    <li>Une <strong>estimation du risque de retour</strong> (<code>return_risk</code>, valeur binaire où 1 = risque élevé).</li>
+  </ul>
+
+  <h3>🗂️ Flowchart</h3>
+  <pre>
+flowchart TD
+    A[Produit brut] --> B[Titre du produit]
+    A --> C[Prix de vente]
+    A --> D[ASIN]
+    A --> E[Image principale]
+
+    B --> B1[TF-IDF Vectorizer]
+    C --> C1[Normalisation + Imputation]
+    D --> D1[Encodage One-Hot]
+    E --> E1[Extraction de caractéristiques visuelles - ResNet18]
+
+    B1 --> F[Fusion des caractéristiques]
+    C1 --> F
+    D1 --> F
+    E1 --> F
+
+    F --> G[Modèle prédictif]
+    G --> H[Prédiction de la note du produit]
+    H --> I[Estimation du risque de retour]
+  </pre>
 </div>
+
 
 <div id="step4" class="content-section">
   <h2>4️⃣ Hyperparameter-tuning RandomForest</h2>
