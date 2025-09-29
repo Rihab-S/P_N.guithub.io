@@ -283,28 +283,54 @@
 
 
 <div id="step5" class="content-section">
-  <h2>5️⃣ Hyperparameter-tuning CatBoost</h2>
-  <p>CatBoost est utilisé pour traiter efficacement les données hétérogènes :</p>
+  <h2>5️⃣ Optimisation des hyperparamètres CatBoost</h2>
+
+  <p>
+    Cette étape consiste à <strong>optimiser les performances d’un modèle CatBoost</strong> appliqué à la prédiction de la note produit. 
+    CatBoost est un modèle de gradient boosting sur arbres, spécialement conçu pour gérer les variables catégorielles et les données hétérogènes tout en étant robuste au surapprentissage.
+  </p>
+
+  <h3>🎯 Méthodologie</h3>
+  <p>
+    Les données préparées précédemment (texte TF-IDF, prix normalisé, identifiants produits encodés et vecteurs d’images) sont <strong>concaténées en un vecteur unique</strong> pour servir d’entrée au modèle. 
+    Nous effectuons ensuite une recherche d’hyperparamètres pour identifier la configuration qui minimise l’erreur de prédiction.
+  </p>
   <ul>
-    <li>Support natif des données catégorielles (ex. <code>ASIN</code>).</li>
-    <li>Gestion automatique des valeurs manquantes.</li>
-    <li>Robuste aux déséquilibres de classes.</li>
+    <li><strong>iterations</strong> : nombre d’itérations (arbres) dans le boosting.</li>
+    <li><strong>depth</strong> : profondeur maximale de chaque arbre.</li>
+    <li><strong>learning_rate</strong> : taux d’apprentissage.</li>
+    <li><strong>max_features (TF-IDF)</strong> : nombre maximal de mots-clés pris en compte dans la vectorisation du texte.</li>
   </ul>
-  <div class="images">
-    <div>
-      <img src="cat_hyper.png" alt="Entraînement CatBoost">
+  <p>
+    Pour chaque combinaison de paramètres, nous calculons la <strong>Root Mean Squared Error (RMSE)</strong> sur le jeu de test afin de déterminer les réglages optimaux.
+  </p>
+
+  <h3>📊 Résultats</h3>
+  <ul>
+    <li><strong>Meilleure RMSE :</strong> 0.4138 avec <code>iterations=350</code>, <code>learning_rate=0.3</code> et <code>depth=6</code></li>
+    <li><strong>Meilleur nombre de features TF-IDF :</strong> 300 → RMSE=0.3484</li>
+  </ul>
+
+  <!-- Images côte à côte -->
+  <div class="images-container" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:20px 0;">
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="cat_hyper.png" alt="Courbe de tuning CatBoost" style="width:100%; height:auto; object-fit:contain;">
       <div class="caption">Exemple d’entraînement CatBoost avec early stopping.</div>
     </div>
-    <div>
-      <img src="cat_hyper_tf.png" alt="Résultats CatBoost">
-      <div class="caption">Comparaison des performances : CatBoost vs RandomForest.</div>
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="cat_hyper_tf.png" alt="Optimisation TF-IDF CatBoost" style="width:100%; height:auto; object-fit:contain;">
+      <div class="caption">Optimisation conjointe des paramètres CatBoost et de TF-IDF max_features.</div>
     </div>
   </div>
-  <ul>
-    <li><strong>Best CatBoost parameters</strong> : {iterations=350, learning_rate=0.3, depth=6} → RMSE = 0.4138</li>
-    <li><strong>Best max_features</strong> : 300 → RMSE = 0.3484</li>
-  </ul>
+
+  <h3>✅ Conclusion</h3>
+  <p>
+    L’utilisation de CatBoost sur les données multi-modales concaténées (texte, numérique, catégoriel et visuel) a permis d’obtenir des prédictions précises des notes produits. 
+    La recherche d’hyperparamètres a montré que <code>iterations=350</code>, <code>depth=6</code>, <code>learning_rate=0.3</code> et <code>max_features=300</code> pour la TF-IDF offrent un excellent compromis entre précision et complexité. 
+    Cette configuration garantit que le modèle exploite efficacement toutes les caractéristiques extraites tout en restant stable et généralisable sur de nouvelles données.
+  </p>
 </div>
+
 
 <div id="step6" class="content-section">
   <h2>6️⃣ Schéma global du pipeline</h2>
