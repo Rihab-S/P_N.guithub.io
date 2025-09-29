@@ -223,29 +223,45 @@
     <li>Une <strong>estimation du risque de retour</strong> (<code>return_risk</code>, valeur binaire où 1 = risque élevé).</li>
   </ul>
 
-  <div class="flowchart-container">
-    <pre class="mermaid">
-  flowchart TD
-      A[Produit brut] --> B[Titre du produit]
-      A --> C[Prix de vente]
-      A --> D[ASIN]
-      A --> E[Image principale]
+  <!-- Ajouter viz.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
   
-      B --> B1[TF-IDF Vectorizer]
-      C --> C1[Normalisation + Imputation]
-      D --> D1[Encodage One-Hot]
-      E --> E1[Extraction visuelle - ResNet18]
+  <script>
+    const dot = `
+  digraph G {
+      rankdir=TB;
+      node [shape=box, style=rounded, color=darkblue, fontname="Arial"];
+      "Produit brut" -> "Titre du produit";
+      "Produit brut" -> "Prix de vente";
+      "Produit brut" -> "ASIN";
+      "Produit brut" -> "Image principale";
   
-      B1 --> F[Fusion des caractéristiques]
-      C1 --> F
-      D1 --> F
-      E1 --> F
+      "Titre du produit" -> "TF-IDF Vectorizer";
+      "Prix de vente" -> "Normalisation + Imputation";
+      "ASIN" -> "One-Hot Encoding";
+      "Image principale" -> "Extraction visuelle - ResNet18";
   
-      F --> G[Modèle prédictif]
-      G --> H[Prédiction note produit]
-      H --> I[Estimation risque de retour]
-    </pre>
-  </div>
+      "TF-IDF Vectorizer" -> "Fusion des caractéristiques";
+      "Normalisation + Imputation" -> "Fusion des caractéristiques";
+      "One-Hot Encoding" -> "Fusion des caractéristiques";
+      "Extraction visuelle - ResNet18" -> "Fusion des caractéristiques";
+  
+      "Fusion des caractéristiques" -> "Modèle prédictif";
+      "Modèle prédictif" -> "Prédiction note produit";
+      "Prédiction note produit" -> "Estimation risque de retour";
+  }
+    `;
+    document.getElementById("flowchart").innerHTML = Viz(dot, { format: "svg" });
+  </script>
+  
+  <style>
+  #flowchart svg {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+  }
+  </style>
 
 </div>
 
