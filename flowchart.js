@@ -1,4 +1,3 @@
-// flowchart.js
 document.addEventListener("DOMContentLoaded", function() {
     const dot = `
 digraph G {
@@ -24,10 +23,11 @@ digraph G {
     "Prédiction note produit" -> "Estimation risque de retour";
 }
     `;
-    // Vérifier que Viz est disponible
+    
     if (typeof Viz !== "undefined") {
-        document.getElementById("flowchart").innerHTML = Viz(dot, { format: "svg" });
+        const container = document.getElementById("flowchart");
+        container.innerHTML = Viz(dot, { format: "svg" });
     } else {
-        console.error("Viz.js non chargé");
+        console.error("Viz.js non chargé !");
     }
 });
