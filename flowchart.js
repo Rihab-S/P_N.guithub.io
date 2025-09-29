@@ -1,7 +1,5 @@
 // flowchart.js
-
-// Assurez-vous que viz.js est déjà chargé dans la page avant ce script
-window.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", function() {
     const dot = `
 digraph G {
     rankdir=TB;
@@ -26,8 +24,10 @@ digraph G {
     "Prédiction note produit" -> "Estimation risque de retour";
 }
     `;
-    const container = document.getElementById("flowchart");
-    if(container) {
-        container.innerHTML = Viz(dot, { format: "svg" });
+    // Vérifier que Viz est disponible
+    if (typeof Viz !== "undefined") {
+        document.getElementById("flowchart").innerHTML = Viz(dot, { format: "svg" });
+    } else {
+        console.error("Viz.js non chargé");
     }
 });
