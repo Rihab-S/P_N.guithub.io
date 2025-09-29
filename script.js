@@ -39,8 +39,6 @@ const translations = {
         welcome: "Welcome",
         project: "Discover our projects, tests, and documentation on artificial intelligence and intelligent systems."
     }
-
-
 };
 
 function changeLanguage(lang) {
@@ -55,8 +53,7 @@ function changeLanguage(lang) {
     document.getElementById("nav-presentation").setAttribute("href", translations[lang].links.presentation);
     document.getElementById("nav-doc").setAttribute("href", translations[lang].links.doc);
     document.getElementById("nav-test").setAttribute("href", translations[lang].links.test);
-    document.getElementById("nav-pre").setAttribute("href", translations[lang].links.perspectives);
-
+    document.getElementById("nav-pre").setAttribute("href", translations[lang].links.Perspectives); // <- corrigé ici
 
     document.getElementById("welcome-title").textContent = translations[lang].welcome;
     document.getElementById("project-text").textContent = translations[lang].project;
