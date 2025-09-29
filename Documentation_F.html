@@ -261,13 +261,14 @@
     <li><strong>Meilleur nombre de features TF-IDF :</strong> 260, donnant une RMSE=0.415</li>
   </ul>
 
-  <div class="images">
-    <div>
-      <img src="RF_hyper.png" alt="Courbe de tuning RandomForest">
+  <!-- Images côte à côte -->
+  <div class="images-container" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:20px 0;">
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="RF_hyper.png" alt="Courbe de tuning RandomForest" style="width:100%; height:auto; object-fit:contain;">
       <div class="caption">Variation de la performance selon le nombre d’estimateurs et la profondeur.</div>
     </div>
-    <div>
-      <img src="RF_hyper_tf_df.png" alt="Optimisation TF-IDF RandomForest">
+    <div class="image-box" style="flex:0 1 45%; text-align:center;">
+      <img src="RF_hyper_tf_df.png" alt="Optimisation TF-IDF RandomForest" style="width:100%; height:auto; object-fit:contain;">
       <div class="caption">Optimisation conjointe de TF-IDF max_features et des paramètres RandomForest.</div>
     </div>
   </div>
@@ -280,7 +281,6 @@
   </p>
 </div>
 
-</div>
 
 <div id="step5" class="content-section">
   <h2>5️⃣ Hyperparameter-tuning CatBoost</h2>
