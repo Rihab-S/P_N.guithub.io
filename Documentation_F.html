@@ -225,23 +225,23 @@
 
   <!-- Conteneur du flowchart -->
   <div id="flowchart" style="text-align:center; margin:20px 0;"></div>
-  
-  <!-- Viz.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
-  
-  <!-- Votre fichier JS séparé -->
-  <script src="flowchart.js"></script>
-  
-  <!-- Optionnel : style du SVG -->
-  <style>
-  #flowchart svg {
-      width: 100%;
-      max-width: 800px;
-      height: auto;
-  }
-  </style>
+</div>
 
+<!-- Charger Viz.js avant votre fichier JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
+
+<!-- Charger le JS séparé après Viz.js -->
+<script src="flowchart.js"></script>
+
+<!-- CSS pour le SVG -->
+<style>
+#flowchart svg {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+</style>
 
 </div>
 
