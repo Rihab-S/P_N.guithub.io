@@ -129,43 +129,43 @@
 </div>
 
 <div id="step2" class="content-section">
-  <h2>2️⃣ Nettoyage des textes</h2>
+    <h2>2️⃣ Nettoyage des textes</h2>
+    
+    <p>
+      Cette étape consiste à <strong>préparer et uniformiser la base de données textuelles</strong> afin de garantir la qualité des informations qui seront utilisées dans les traitements d’analyse et dans l’entraînement du modèle d’intelligence artificielle.  
+      Un texte brut contient souvent du bruit (ponctuation, majuscules, mots sans importance, etc.), ce qui peut fausser les résultats.  
+      Le nettoyage est donc une étape <strong>indispensable</strong> pour obtenir une base de données plus cohérente, homogène et exploitable.
+    </p>
+    
+    <h3>🎯 Objectif</h3>
+    <p>
+      Améliorer la qualité des données textuelles en supprimant les éléments inutiles ou redondants, tout en conservant l’information pertinente pour l’analyse.
+    </p>
   
+    <h3>⚙️ Étapes de nettoyage</h3>
+    <ul>
+      <li><strong>Détection automatique de la langue</strong> : identifier la langue de chaque commentaire pour appliquer un nettoyage adapté.</li>
+      <li><strong>Conversion en minuscules</strong> : uniformiser le texte afin d’éviter les doublons liés aux majuscules/minuscules.</li>
+      <li><strong>Suppression de la ponctuation</strong> : éliminer les caractères spéciaux ou symboles qui n’apportent pas de valeur sémantique.</li>
+      <li><strong>Suppression des stopwords</strong> : retirer les mots vides (ex. : « le », « de », « et » en français ou « the », « and », « of » en anglais) en fonction de la langue détectée.</li>
+    </ul>
+  
+  <h3>✅ Résultat attendu</h3>
   <p>
-    Cette étape consiste à <strong>préparer et uniformiser la base de données textuelles</strong> afin de garantir la qualité des informations qui seront utilisées dans les traitements d’analyse et dans l’entraînement du modèle d’intelligence artificielle.  
-    Un texte brut contient souvent du bruit (ponctuation, majuscules, mots sans importance, etc.), ce qui peut fausser les résultats.  
-    Le nettoyage est donc une étape <strong>indispensable</strong> pour obtenir une base de données plus cohérente, homogène et exploitable.
+    À l’issue de cette étape, la base de données textuelles est <strong>propre, normalisée et directement exploitable</strong>.  
+    Ce processus de prétraitement permet d’améliorer significativement les performances des algorithmes de traitement du langage naturel (NLP) et de limiter les biais causés par le bruit présent dans les données brutes.
   </p>
   
-  <h3>🎯 Objectif</h3>
-  <p>
-    Améliorer la qualité des données textuelles en supprimant les éléments inutiles ou redondants, tout en conservant l’information pertinente pour l’analyse.
-  </p>
-
-  <h3>⚙️ Étapes de nettoyage</h3>
-  <ul>
-    <li><strong>Détection automatique de la langue</strong> : identifier la langue de chaque commentaire pour appliquer un nettoyage adapté.</li>
-    <li><strong>Conversion en minuscules</strong> : uniformiser le texte afin d’éviter les doublons liés aux majuscules/minuscules.</li>
-    <li><strong>Suppression de la ponctuation</strong> : éliminer les caractères spéciaux ou symboles qui n’apportent pas de valeur sémantique.</li>
-    <li><strong>Suppression des stopwords</strong> : retirer les mots vides (ex. : « le », « de », « et » en français ou « the », « and », « of » en anglais) en fonction de la langue détectée.</li>
-  </ul>
-
-<h3>✅ Résultat attendu</h3>
-<p>
-  À l’issue de cette étape, la base de données textuelles est <strong>propre, normalisée et directement exploitable</strong>.  
-  Ce processus de prétraitement permet d’améliorer significativement les performances des algorithmes de traitement du langage naturel (NLP) et de limiter les biais causés par le bruit présent dans les données brutes.
-</p>
-
-<div class="example-block">
-  <img src="raw_text_example.png" alt="Exemple de texte brut non nettoyé">
-  <div class="caption">🔴 Exemple de données brutes avant nettoyage.</div>
+  <div class="example-block">
+    <img src="raw_text_example.png" alt="Exemple de texte brut non nettoyé">
+    <div class="caption">🔴 Exemple de données brutes avant nettoyage.</div>
+  </div>
+  
+  <div class="example-block">
+    <img src="cleaned_text_example.png" alt="Exemple de texte nettoyé">
+    <div class="caption">🟢 Exemple de données après nettoyage.</div>
+  </div>
 </div>
-
-<div class="example-block">
-  <img src="cleaned_text_example.png" alt="Exemple de texte nettoyé">
-  <div class="caption">🟢 Exemple de données après nettoyage.</div>
-</div>
-
 
 
 <div id="step3" class="content-section">
