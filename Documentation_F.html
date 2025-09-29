@@ -245,12 +245,33 @@
 
 
 <div id="step4" class="content-section">
-  <h2>4️⃣ Hyperparameter-tuning RandomForest</h2>
-  <p>Recherche des meilleurs hyperparamètres pour RandomForest :</p>
+  <h2>4️⃣ Optimisation des hyperparamètres du modèle</h2>
+
+  <p>
+    Cette étape consiste à <strong>optimiser les performances d’un modèle d’ensemble de type RandomForest</strong> appliqué à la prédiction de la note produit. 
+    RandomForest est une méthode basée sur la combinaison de plusieurs arbres de décision, ce qui permet de réduire la variance et d’améliorer la robustesse de la prédiction.
+  </p>
+
+  <h3>🎯 Méthodologie</h3>
+  <p>
+    Les données préparées précédemment (texte TF-IDF, prix normalisé, identifiants produits encodés et vecteurs d’images) sont <strong>concaténées en un vecteur unique</strong> pour servir d’entrée au modèle. 
+    Ensuite, nous effectuons une recherche d’hyperparamètres pour identifier la configuration qui minimise l’erreur de prédiction.
+  </p>
   <ul>
-    <li><strong>Best RMSE</strong> : 0.4161 avec paramètres <code>n_estimators=220</code>, <code>max_depth=7</code></li>
-    <li><strong>Best TF-IDF max_features</strong> : 260 avec RMSE=0.415</li>
+    <li><strong>n_estimators</strong> : nombre d’arbres dans la forêt.</li>
+    <li><strong>max_depth</strong> : profondeur maximale de chaque arbre.</li>
+    <li><strong>max_features (TF-IDF)</strong> : nombre maximal de mots-clés pris en compte dans la vectorisation du texte.</li>
   </ul>
+  <p>
+    Pour chaque combinaison de paramètres, nous calculons la <strong>Root Mean Squared Error (RMSE)</strong> sur le jeu de test afin de déterminer les réglages optimaux.
+  </p>
+
+  <h3>📊 Résultats</h3>
+  <ul>
+    <li><strong>Meilleure RMSE :</strong> 0.4161 avec <code>n_estimators=220</code> et <code>max_depth=7</code></li>
+    <li><strong>Meilleur nombre de features TF-IDF :</strong> 260, donnant une RMSE=0.415</li>
+  </ul>
+
   <div class="images">
     <div>
       <img src="RF_hyper.png" alt="Courbe de tuning RandomForest">
@@ -258,9 +279,18 @@
     </div>
     <div>
       <img src="RF_hyper_tf_df.png" alt="Optimisation TF-IDF RandomForest">
-      <div class="caption">Optimisation conjointe de TF-IDF max_features et RandomForest.</div>
+      <div class="caption">Optimisation conjointe de TF-IDF max_features et des paramètres RandomForest.</div>
     </div>
   </div>
+
+  <h3>✅ Conclusion</h3>
+  <p>
+    L’utilisation de RandomForest sur les données multi-modales concaténées (texte, numérique, catégoriel et visuel) a permis d’obtenir des prédictions fiables des notes produits. 
+    La recherche d’hyperparamètres a montré que <code>n_estimators=220</code>, <code>max_depth=7</code> et <code>max_features=260</code> pour la TF-IDF offrent un bon compromis entre précision et complexité. 
+    Cette configuration garantit que le modèle exploite efficacement toutes les caractéristiques extraites tout en restant stable et généralisable sur de nouvelles données.
+  </p>
+</div>
+
 </div>
 
 <div id="step5" class="content-section">
