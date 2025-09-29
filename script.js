@@ -4,10 +4,12 @@ const translations = {
         navPresentation: "Présentation",
         navDoc: "Documentation",
         navTest: "Test",
+        navPre: "Perspectives",
         links: {
             presentation: "Presentation_F.html",
             doc: "Documentation_F.html",
-            test: "test_F.html"
+            test: "test_F.html",
+            Perspectives: "prespective_F.html"
         },
         footer: "© 2025 Rihab Souissi.",
         phrases: [
@@ -22,10 +24,12 @@ const translations = {
         navPresentation: "Presentation",
         navDoc: "Documentation",
         navTest: "Test",
+        navPre: "Perspectives",
         links: {
             presentation: "Presentation_A.html",
             doc: "Documentation_A.html",
-            test: "test_A.html"
+            test: "test_A.html",
+            Perspectives: "prespective_A.html"
         },
         footer: "© 2025 Rihab Souissi.",
         phrases: [
@@ -45,11 +49,13 @@ function changeLanguage(lang) {
     document.getElementById("nav-presentation").textContent = translations[lang].navPresentation;
     document.getElementById("nav-doc").textContent = translations[lang].navDoc;
     document.getElementById("nav-test").textContent = translations[lang].navTest;
+    document.getElementById("nav-pre").textContent = translations[lang].navPre;
     document.getElementById("footer-text").textContent = translations[lang].footer;
 
     document.getElementById("nav-presentation").setAttribute("href", translations[lang].links.presentation);
     document.getElementById("nav-doc").setAttribute("href", translations[lang].links.doc);
     document.getElementById("nav-test").setAttribute("href", translations[lang].links.test);
+    document.getElementById("nav-pre").setAttribute("href", translations[lang].links.perspectives);
 
     document.getElementById("welcome-title").textContent = translations[lang].welcome;
     document.getElementById("project-text").textContent = translations[lang].project;
