@@ -28,6 +28,6 @@ digraph G {
         const container = document.getElementById("flowchart");
         container.innerHTML = Viz(dot, { format: "svg" });
     } else {
-        console.error("Viz.js non chargé !");
+        console.error("viz.js non chargé !");
     }
 });
